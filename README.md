@@ -6,7 +6,7 @@
 
 Clone o repositório
  ```bash
- git clone git@github.com:Doe-IFBaiano/mobile.git
+ git clone git@github.com:doemais-ifbaiano/mobile.git
  ```
  
  Copie em um arquivo .env as variáveis necessárias e altere de acordo com o seu ambiente.
