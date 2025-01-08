@@ -1,0 +1,18 @@
+{
+    "strict": {
+        "text-font-family": "InterTight-VariableFont_wght",
+
+        "text-heading-1-font-size": 34,
+        "text-heading-1-font-weight": "800",
+        "text-heading-1-font-family": "InterTight-Bold",
+
+        "text-heading-6-font-size": 15,
+        "text-heading-6-font-weight": "600",
+        "text-heading-6-font-family": "InterTight-SemiBold",
+        
+        "text-subtitle-1-font-size": 15, 
+        "text-subtitle-1-font-weight": "600",
+        "text-subtitle-1-font-family": "InterTight-Bold"
+    },
+    "components": {}
+}
