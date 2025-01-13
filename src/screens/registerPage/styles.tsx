@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: "7%",
     justifyContent: "center",
   },
   scrollContainer: {
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginTop: 10,
+    marginTop: "7%",
   },
   logo: {
     width: 110,
@@ -25,23 +25,22 @@ export const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
-    marginTop: 10,
+    marginTop: "2%",
     fontWeight: "bold",
-    fontSize: 24,
   },
   subtitle: {
     textAlign: "center",
-    marginTop: 5,
-    fontSize: 14,
+    marginTop: "2%",
   },
   form: {
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    marginTop: 20,
+    marginTop: "7%",
   },
   inputWrapper: {
     width: "87.5%",
-    marginBottom: 15,
+    marginBottom: "7%",
   },
+
 });
