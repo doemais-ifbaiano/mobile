@@ -1,6 +1,6 @@
 import React from "react";
-import { Input, Text } from "@ui-kitten/components";  // Adicionando a importação de Text
-import { styles } from "./styles";  // Corrigindo a importação de styles
+import { Input, Text } from "@ui-kitten/components"; 
+import { styles } from "./styles";
 
 interface InputGlobalProps {
   label: string;
@@ -23,7 +23,7 @@ export default function InputGlobal({
         style={styles.input}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
-        placeholderTextColor="#B0B0B0"  // Cor do texto do placeholder
+        placeholderTextColor="#B0B0B0"
       />
     </>
   );

@@ -5,13 +5,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 20, // Mantém espaçamento interno geral.
+    paddingVertical: 20,
   },
   box: {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50, // Espaçamento maior do topo para os textos.
+    marginTop: 50, 
   },
   title: {
     textAlign: "center",
@@ -19,18 +19,18 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    marginBottom: 20, // Espaço entre o subtítulo e a logo.
+    marginBottom: 20,
   },
   logo: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1, // Faz com que a logo ocupe espaço centralizado no layout.
+    flex: 1, 
   },
   buttonContainer: {
     width: "100%",
-    justifyContent: "flex-end", // Mantém o botão na parte inferior.
+    justifyContent: "flex-end",
     alignItems: "center",
-    marginBottom: 20, // Espaçamento abaixo do botão.
+    marginBottom: 20, 
   },
 });
 

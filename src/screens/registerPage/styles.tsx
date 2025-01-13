@@ -12,8 +12,8 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 110,
+    height: 173,
     resizeMode: "contain",
   },
   subtitle: {

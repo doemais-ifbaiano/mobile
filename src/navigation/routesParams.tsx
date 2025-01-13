@@ -1,6 +1,6 @@
 export type RoutesParams = {
 
     LandingPage: undefined;
-    Cadastro: undefined;
+    Register: undefined;
     
 };

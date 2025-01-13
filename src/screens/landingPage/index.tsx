@@ -36,7 +36,7 @@ export default function LandingPageScreen() {
       <Layout style={styles.buttonContainer}>
         <ButtonGlobal
           title="Acessar"
-          onPress={() => navigation.navigate("Cadastro")}
+          onPress={() => navigation.navigate("Register")}
         />
       </Layout>
     </Layout>
