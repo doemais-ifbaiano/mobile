@@ -1,39 +1,37 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingTop: "20%",
-    },
-    box: {
-        width: "100%",
-        height: "20%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",    
-    },
-    title: {
-        textAlign: "center",
-        marginBottom: "5%",
-    },
-    text: {
-        textAlign: "justify",
-    },
-    logo: {
-        width: "80%",
-        height: "100%",
-        alignItems: "center",
-        paddingTop: "25%",
-        resizeMode: "contain",
-    },
-    button: {
-        marginTop: "30%",
-        width: "100%",
-        height: "25%",
-        alignItems: "center",
-    }
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 20,
+  },
+  box: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 50, 
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  text: {
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  logo: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1, 
+  },
+  buttonContainer: {
+    width: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginBottom: 20, 
+  },
 });
 
 export default styles;
