@@ -1,6 +1,9 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "module": "CommonJS",           // Definindo o módulo para CommonJS
+    "esModuleInterop": true,        // Garantindo compatibilidade entre CommonJS e ES Modules
+    "skipLibCheck": true            // Opcional, melhora a performance de compilação
   }
 }
