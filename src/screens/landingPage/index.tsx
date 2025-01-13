@@ -28,7 +28,6 @@ export default function LandingPageScreen() {
       <Layout style={styles.logo}>
         <Image
           source={require("../../../assets/logos/logo-grande.png")}
-          style={{ width: 199.56, height: 261 }}
         />
       </Layout>
 

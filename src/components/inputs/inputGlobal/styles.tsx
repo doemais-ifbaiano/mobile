@@ -23,4 +23,4 @@ export const styles = StyleSheet.create({
     backgroundColor: "#E3DEDE",
   },
   
-});
+}); 
