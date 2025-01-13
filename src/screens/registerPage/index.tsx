@@ -8,10 +8,10 @@ import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
 import ButtonGlobal from "../../components/buttons/buttonGlobal"; 
 
-type CadastroParamsList = NativeStackNavigationProp<RoutesParams, "Cadastro">;
+type RegisterParamsList = NativeStackNavigationProp<RoutesParams, "Register">;
 
-export default function CadastroScreen() {
-  const navigation = useNavigation<CadastroParamsList>();
+export default function RegisterScreen() {
+  const navigation = useNavigation<RegisterParamsList>();
 
   return (
     <Layout style={styles.container}>
@@ -45,7 +45,7 @@ export default function CadastroScreen() {
         />
         <InputGlobal
           label="Confirmar senha"
-          placeholder="Confirme sua senha"
+          placeholder="Confirme sua senha" 
           secureTextEntry={true}
         />
         <InputGlobal
