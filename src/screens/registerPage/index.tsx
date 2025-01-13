@@ -58,7 +58,7 @@ export default function RegisterScreen() {
               </Text>
               <Text
                 category="s1"
-                style={[styles.subtitle, { color: theme["text-hint-color"] }]}
+                style={[styles.subtitle, { color: theme["text-subtitle-color"] }]}
               >
                 Insira seus dados para ser registrado
               </Text>
