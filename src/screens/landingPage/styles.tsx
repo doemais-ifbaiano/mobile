@@ -8,29 +8,31 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   box: {
-    width: "100%",
+    width: "90%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50, 
+    marginTop: "15%", 
   },
   title: {
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: "2%",
   },
   text: {
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: "2%",
   },
   logo: {
+    marginTop: "30%",
     justifyContent: "center",
     alignItems: "center",
     flex: 1, 
   },
   buttonContainer: {
     width: "100%",
+    marginTop: "20%",
     justifyContent: "flex-end",
     alignItems: "center",
-    marginBottom: 20, 
+    marginBottom: "10%", 
   },
 });
 
