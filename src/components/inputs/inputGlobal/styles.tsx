@@ -8,9 +8,11 @@ export const styles = StyleSheet.create({
     lineHeight: 17.41,
     textAlign: "left",
     textDecorationLine: "none",
+    marginBottom: -5,
   },
   
   input: {
+    
     width: 309,
     height: 35,
     paddingTop: 8.29, 
