@@ -6,13 +6,16 @@ interface InputGlobalProps {
   label: string;
   placeholder: string;
   secureTextEntry?: boolean;
+  textColor?: string;
 }
 
 export default function InputGlobal({
   label,
   placeholder,
   secureTextEntry = false,
+  textColor,
 }: InputGlobalProps) {
+
   return (
     <>
       {/* Título (Label) */}
@@ -23,7 +26,7 @@ export default function InputGlobal({
         style={styles.input}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
-        placeholderTextColor="#B0B0B0"
+        placeholderTextColor={textColor}
       />
     </>
   );
