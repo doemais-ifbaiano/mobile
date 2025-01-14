@@ -37,7 +37,7 @@ export default function InputIconLeftAndRight({
   return (
     <>
       {/* Título (Label) */}
-      <Text>{label}</Text>
+      <Text category="h6" style={styles.labelText}>{label}</Text>
       
       {/* Input */}
       <Input
