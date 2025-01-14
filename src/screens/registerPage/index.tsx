@@ -105,6 +105,7 @@ export default function RegisterScreen() {
               {/* Botão Global */}
               <ButtonGlobal
                 title="Cadastrar"
+                appeareances=""
                 onPress={() => navigation.navigate("LandingPage")}
               />
             </Layout>
