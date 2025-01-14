@@ -9,6 +9,7 @@ interface InputGlobalProps {
   textColor?: string;
   iconLeft?: string;
   iconRight?: string;
+  onIconRightPress?: () => void;
 }
 
 export default function InputIconLeftAndRight({
@@ -18,19 +19,22 @@ export default function InputIconLeftAndRight({
   textColor,
   iconLeft,
   iconRight,
+  onIconRightPress, 
 }: InputGlobalProps) {
 
   const left = (props: any): IconElement => (
     <Icon
       {...props}
       name={iconLeft || "home"}
+      fill="black" 
     />
   );
 
   const right = (props: any): IconElement => (
     <Icon
       {...props}
-      name={iconRight || "home"}
+      name={iconRight || "eye-outline"} 
+      fill="#B562FE" 
     />
   );
 
@@ -46,7 +50,13 @@ export default function InputIconLeftAndRight({
         secureTextEntry={secureTextEntry}
         placeholderTextColor={textColor}
         accessoryLeft={left} 
-        accessoryRight={right}
+        accessoryRight={() => (
+          <Icon
+            name={iconRight || "eye-outline"} 
+            fill="#B562FE"
+            onPress={onIconRightPress} 
+          />
+        )}
       />
     </>
   );

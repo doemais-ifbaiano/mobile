@@ -3,42 +3,41 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "flex-start", 
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: "5%",
   },
   logo: {
-    marginTop: "10%",
+    marginTop: "10%", 
+    marginBottom: "5%", 
     alignItems: "center",
-    flex: 1,
   },
   box: {
     width: "90%",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "8%",
+    marginBottom: "5%", 
   },
   title: {
     textAlign: "center",
     marginBottom: "2%",
   },
   text: {
-    textAlign: "center",   
+    textAlign: "center",
   },
   inputs: {
     width: "90%",
-    alignItems: "center",
+    marginBottom: "5%", 
   },
   buttonContainer: {
     width: "100%",
-    marginTop: "25%",
     alignItems: "center",
-    marginBottom: "60%",
+    marginBottom: "5%",
   },
   backButton: {
     position: "absolute",
-    top: "10%",
-    left: "7%",
+    top: "7%", 
+    left: "5%",
     zIndex: 10,
   },
 });

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   textButtonRegister: {
     textAlign: "center",  
     marginTop: "7%", 
+    color: "#575454",
   },
   inputs: {
     width: "90%",
@@ -35,8 +36,8 @@ const styles = StyleSheet.create({
   },
   checkboxContainer: {
     marginTop: "4%",
-    flexDirection: 'row', // Para alinhar a checkbox e o texto horizontalmente
-    alignItems: 'center', // Alinha o texto com a checkbox
+    flexDirection: 'row', 
+    alignItems: 'center', 
   },
   buttonContainer: {
     width: "100%",

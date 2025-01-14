@@ -22,6 +22,7 @@ export default function InputIconLeft({
     <Icon
       {...props}
       name={iconName || "home"}
+      fill="black"
     />
   );
 
