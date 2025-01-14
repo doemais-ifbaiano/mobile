@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: "absolute",
-    top: "10%",
-    left: "7%",
+    top: "7%", 
+    left: "5%",
     zIndex: 10,
   },
 });

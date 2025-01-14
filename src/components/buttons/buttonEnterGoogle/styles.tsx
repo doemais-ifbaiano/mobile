@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
         textTransform: "none",
     },
     text: {
-        fontFamily: "Inter, Helvetica, Arial, sans-serif", // Certifique-se de que a fonte Inter está disponível
+        fontFamily: "Inter, Helvetica, Arial, sans-serif",
         fontWeight: "400",
         color: "black",
         lineHeight: 34,
     },
     icon: {
-        marginRight: 10, // Espaçamento entre o ícone e o texto
+        marginRight: 10, 
     },
 });
 
