@@ -46,7 +46,7 @@ export default function LoginScreen() {
           onChange={nextChecked => setChecked(nextChecked)}>
             Manter-me conectado(a)
         </CheckBox>
-        <Button appearance="ghost">Esqueceu sua senha?</Button>
+        <Button appearance="ghost" onPress={() => navigation.navigate("RecoverPassword")}>Esqueceu sua senha?</Button>
       </Layout>
 
       {/* Botão */}
