@@ -54,25 +54,25 @@ export default function NewPasswordScreen() {
           {/* Caixa de textos */}
           <Layout style={styles.box}>
             <Text category="h1" style={styles.title}>
-              Nova Senha
+              Cadastrar nova senha
             </Text>
             <Text category="h6" style={styles.text}>
-              Crie uma nova senha
+              Digite sua nova senha
             </Text>
           </Layout>
 
           <Layout style={styles.inputs}>
             <InputIconLeftAndRight
-              label="Nova senha:"
-              placeholder=""
+              label="Senha *"
+              placeholder="Sua nova senha"
               iconLeft="lock"
               iconRight={isNewPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isNewPasswordVisible}
               onIconRightPress={toggleNewPasswordVisibility} 
             />
             <InputIconLeftAndRight
-              label="Confirmar senha:"
-              placeholder=""
+              label="Confirmar senha *"
+              placeholder="Confirmar sua nova senha"
               iconLeft="lock"
               iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isConfirmPasswordVisible}

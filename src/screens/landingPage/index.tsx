@@ -17,7 +17,7 @@ export default function LandingPageScreen() {
       {/* Caixa de textos */}
       <Layout style={styles.box}>
         <Text category="h1" style={styles.title}>
-          Faça a diferença seja solidário
+          Faça a diferença, seja solidário
         </Text>
         <Text category="h6" style={styles.text}>
           Sua contribuição ajuda a transformar vidas
@@ -34,7 +34,7 @@ export default function LandingPageScreen() {
       {/* Botão */}
       <Layout style={styles.buttonContainer}>
         <ButtonGlobal
-          title="Acessar"
+          title="Clique e seja um doador"
           appeareances="default"
           onPress={() => navigation.navigate("Login")}
         />
