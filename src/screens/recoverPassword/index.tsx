@@ -40,21 +40,21 @@ export default function RecoverPasswordScreen() {
           {/* Caixa de textos */}
           <Layout style={styles.box}>
             <Text category="h1" style={styles.title}>
-              Recuperar senha
+              Esqueci minha senha
             </Text>
             <Text category="h6" style={styles.text}>
-              Insira um email/CPF para iniciar o processo de recuperação
+              Insira seu e-mail cadastrado para iniciar o processo de recuperação de conta.
             </Text>
           </Layout>
 
           <Layout style={styles.inputs}>
-            <InputGlobal label="" placeholder="Email/CPF"></InputGlobal>
+            <InputGlobal label="Seu e-mail *" placeholder="ex.john@doe,com" iconName="person-outline"></InputGlobal>
           </Layout>
 
           {/* Botão */}
           <Layout style={styles.buttonContainer}>
             <ButtonGlobal
-              title="Enviar"
+              title="Enviar link de recuperação"
               appeareances=""
               onPress={() => navigation.navigate("NewPassword")}
             />
