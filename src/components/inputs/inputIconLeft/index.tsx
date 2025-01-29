@@ -1,9 +1,9 @@
-import React from "react";
-import { Input, Text, IconElement, Icon } from "@ui-kitten/components"; 
+import React, { ReactNode } from "react";
+import { Input, Text, IconElement, Icon } from "@ui-kitten/components";
 import { styles } from "./styles";
 
 interface InputGlobalProps {
-  label: string;
+  label: ReactNode;
   placeholder: string;
   secureTextEntry?: boolean;
   textColor?: string;
@@ -29,8 +29,8 @@ export default function InputIconLeft({
   return (
     <>
       {/* Título (Label) */}
-      <Text>{label}</Text>
-      
+      {label}
+
       {/* Input */}
       <Input
         style={styles.input}

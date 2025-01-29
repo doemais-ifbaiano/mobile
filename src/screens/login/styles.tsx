@@ -25,14 +25,16 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",   
   },
-  textButtonRegister: {
-    textAlign: "center",  
-    marginTop: "7%", 
-    color: "#575454",
+  divider: {
+    width: "90%", 
+    height: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ACACAC",
+    marginVertical: "5%",
   },
   inputs: {
     width: "90%",
-    alignItems: "center",
+    marginBottom: "5%",
   },
   checkboxContainer: {
     marginTop: "4%",

@@ -1,9 +1,9 @@
-import React from "react";
-import { Input, Text, IconElement, Icon } from "@ui-kitten/components"; 
+import React, { ReactNode } from "react";
+import { Input, Text, IconElement, Icon } from "@ui-kitten/components";
 import { styles } from "./styles";
 
 interface InputGlobalProps {
-  label: string;
+  label: ReactNode;
   placeholder: string;
   secureTextEntry?: boolean;
   textColor?: string;
@@ -19,42 +19,42 @@ export default function InputIconLeftAndRight({
   textColor,
   iconLeft,
   iconRight,
-  onIconRightPress, 
+  onIconRightPress,
 }: InputGlobalProps) {
 
   const left = (props: any): IconElement => (
     <Icon
       {...props}
       name={iconLeft || "home"}
-      fill="#ACACAC" 
+      fill="#ACACAC"
     />
   );
 
   const right = (props: any): IconElement => (
     <Icon
       {...props}
-      name={iconRight || "eye-outline"} 
-      fill="#ACACAC" 
+      name={iconRight || "eye-outline"}
+      fill="#ACACAC"
     />
   );
 
   return (
     <>
       {/* Título (Label) */}
-      <Text>{label}</Text>
-      
+      {label}
+
       {/* Input */}
       <Input
         style={styles.input}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         placeholderTextColor={textColor}
-        accessoryLeft={left} 
+        accessoryLeft={left}
         accessoryRight={() => (
           <Icon
-            name={iconRight || "eye-outline"} 
+            name={iconRight || "eye-outline"}
             fill="#ACACAC"
-            onPress={onIconRightPress} 
+            onPress={onIconRightPress}
           />
         )}
       />

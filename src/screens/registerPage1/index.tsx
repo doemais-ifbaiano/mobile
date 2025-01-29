@@ -15,7 +15,7 @@ import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
 
-type RegisterParamsList = NativeStackNavigationProp<RoutesParams, "Register">;
+type RegisterParamsList = NativeStackNavigationProp<RoutesParams, "Register1">;
 
 export default function RegisterScreen() {
   const navigation = useNavigation<RegisterParamsList>();
@@ -39,7 +39,7 @@ export default function RegisterScreen() {
             >
               <Icon
                 name="arrow-back"
-                fill={theme["black"]} 
+                fill={theme["color-basic-800"]} 
                 style={{ width: 30, height: 30 }} 
               />
             </TouchableOpacity>
@@ -54,13 +54,13 @@ export default function RegisterScreen() {
                 category="h4"
                 style={[styles.title, { color: theme["text-basic-color"] }]}
               >
-                Cadastro
+                Cadastrar usuário
               </Text>
               <Text
                 category="s1"
                 style={[styles.subtitle, { color: theme["text-subtitle-color"] }]}
               >
-                Insira seus dados para ser registrado
+                Informe seus dados pessoais
               </Text>
             </Layout>
 
@@ -68,45 +68,40 @@ export default function RegisterScreen() {
             <Layout style={styles.form}>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="Nome completo"
-                  placeholder="Digite seu nome completo"
-                />
-              </Layout>
-              <Layout style={styles.inputWrapper}>
-                <InputGlobal label="E-mail" placeholder="Digite seu email" />
-              </Layout>
-              <Layout style={styles.inputWrapper}>
-                <InputGlobal
-                  label="Senha"
-                  placeholder="Digite sua senha"
-                  secureTextEntry
+                  label={<Text>Nome completo <Text style={{ color: "red" }}>*</Text></Text>}
+                  placeholder="ex. Maria Pereira Santos"
+                  iconName="person-outline"
+                  textColor={theme["text-basic-color"]}
                 />
               </Layout>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="Confirmar senha"
-                  placeholder="Confirme sua senha"
-                  secureTextEntry
+                  label={<Text>CPF/CNPJ <Text style={{ color: "red" }}>*</Text></Text>}
+                  placeholder="ex. 123.456.789-10"
+                  iconName="credit-card-outline"
+                  textColor={theme["text-basic-color"]}
                 />
-              </Layout>
-              <Layout style={styles.inputWrapper}>
-                <InputGlobal label="CPF/CNPJ" placeholder="Digite seu CPF/CNPJ" />
               </Layout>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="Data de Nascimento"
-                  placeholder="DD/MM/YYYY"
+                  label={<Text>Data de nascimento <Text style={{ color: "red" }}>*</Text></Text>}
+                  placeholder="ex. 01/02/2002"
+                  iconName="calendar-outline"
+                  textColor={theme["text-basic-color"]}
                 />
               </Layout>
               <Layout style={styles.inputWrapper}>
-                <InputGlobal label="Telefone" placeholder="(xx) xxxx-xxxx" />
+                <InputGlobal
+                  label={<Text>Telefone <Text style={{ color: "red" }}>*</Text></Text>}
+                  placeholder="ex. (77) 9 1234-5678"
+                  iconName="phone-outline"
+                  textColor={theme["text-basic-color"]}
+                />
               </Layout>
-
-              {/* Botão Global */}
               <ButtonGlobal
-                title="Cadastrar"
+                title="Próximo"
                 appeareances=""
-                onPress={() => navigation.navigate("Login")}
+                onPress={() => navigation.navigate("Register2")}
               />
             </Layout>
           </Layout>
