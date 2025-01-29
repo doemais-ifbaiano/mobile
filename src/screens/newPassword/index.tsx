@@ -63,7 +63,7 @@ export default function NewPasswordScreen() {
 
           <Layout style={styles.inputs}>
             <InputIconLeftAndRight
-              label="Senha *"
+              label={<Text>Senha <Text style={{ color: "red" }}>*</Text></Text>}
               placeholder="Sua nova senha"
               iconLeft="lock"
               iconRight={isNewPasswordVisible ? "eye-off-outline" : "eye-outline"}
@@ -71,7 +71,7 @@ export default function NewPasswordScreen() {
               onIconRightPress={toggleNewPasswordVisibility} 
             />
             <InputIconLeftAndRight
-              label="Confirmar senha *"
+              label={<Text>Confirmar senha <Text style={{ color: "red" }}>*</Text></Text>}
               placeholder="Confirmar sua nova senha"
               iconLeft="lock"
               iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}

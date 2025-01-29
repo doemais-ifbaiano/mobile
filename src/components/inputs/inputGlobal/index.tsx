@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Input, Text, Icon } from "@ui-kitten/components";
 import { View } from "react-native";
 import { styles } from "./styles";
 
 interface InputGlobalProps {
-  label: string;
+  label: ReactNode;
   placeholder: string;
   secureTextEntry?: boolean;
   textColor?: string;
@@ -26,7 +26,7 @@ export default function InputGlobal({
   return (
     <View>
       {/* Título (Label) */}
-      <Text>{label}</Text>
+      {label}
 
       {/* Input com ícone à esquerda */}
       <Input

@@ -48,7 +48,11 @@ export default function RecoverPasswordScreen() {
           </Layout>
 
           <Layout style={styles.inputs}>
-            <InputGlobal label="Seu e-mail *" placeholder="ex.john@doe,com" iconName="person-outline"></InputGlobal>
+            <InputGlobal 
+            label={<Text>Seu e-mail <Text style={{ color: "red" }}>*</Text></Text>}
+            placeholder="ex.john@doe.com" 
+            iconName="person-outline">
+            </InputGlobal>
           </Layout>
 
           {/* Botão */}

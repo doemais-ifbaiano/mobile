@@ -40,13 +40,14 @@ export default function LoginScreen() {
           </Layout>
 
           <Layout style={styles.inputs}>
-            <InputIconLeft label="Seu e-mail *"
+            <InputIconLeft
+              label={<Text>Seu e-mail <Text style={{ color: "red" }}>*</Text></Text>}
               placeholder="ex.john@doe.com"
               textColor="#ACACAC"
               iconName="person-outline"
             />
             <InputIconLeftAndRight
-              label="Sua senha *"
+              label={<Text>Sua senha <Text style={{ color: "red" }}>*</Text></Text>}
               placeholder="Sua senha"
               textColor="#ACACAC"
               iconLeft="lock"

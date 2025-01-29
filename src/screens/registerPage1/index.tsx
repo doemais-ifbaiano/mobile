@@ -68,7 +68,7 @@ export default function RegisterScreen() {
             <Layout style={styles.form}>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="Nome completo *"
+                  label={<Text>Nome completo <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="ex. Maria Pereira Santos"
                   iconName="person-outline"
                   textColor={theme["text-basic-color"]}
@@ -76,7 +76,7 @@ export default function RegisterScreen() {
               </Layout>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="CPF/CNPJ *"
+                  label={<Text>CPF/CNPJ <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="ex. 123.456.789-10"
                   iconName="credit-card-outline"
                   textColor={theme["text-basic-color"]}
@@ -84,7 +84,7 @@ export default function RegisterScreen() {
               </Layout>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="Data de nascimento *"
+                  label={<Text>Data de nascimento <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="ex. 01/02/2002"
                   iconName="calendar-outline"
                   textColor={theme["text-basic-color"]}
@@ -92,7 +92,7 @@ export default function RegisterScreen() {
               </Layout>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label="Telefone *"
+                  label={<Text>Telefone <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="ex. (77) 9 1234-5678"
                   iconName="phone-outline"
                   textColor={theme["text-basic-color"]}
