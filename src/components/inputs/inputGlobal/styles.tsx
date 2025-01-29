@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     gap: 8.29,
     borderRadius: 13.27,
     opacity: 0.7,
-    backgroundColor: "#E3DEDE",
+    backgroundColor: "#E0E0E0",
   },
   
 }); 

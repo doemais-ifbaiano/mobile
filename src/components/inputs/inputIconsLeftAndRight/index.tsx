@@ -26,7 +26,7 @@ export default function InputIconLeftAndRight({
     <Icon
       {...props}
       name={iconLeft || "home"}
-      fill="black" 
+      fill="#ACACAC" 
     />
   );
 
@@ -34,14 +34,14 @@ export default function InputIconLeftAndRight({
     <Icon
       {...props}
       name={iconRight || "eye-outline"} 
-      fill="#B562FE" 
+      fill="#ACACAC" 
     />
   );
 
   return (
     <>
       {/* Título (Label) */}
-      <Text category="h6" style={styles.labelText}>{label}</Text>
+      <Text>{label}</Text>
       
       {/* Input */}
       <Input
@@ -53,7 +53,7 @@ export default function InputIconLeftAndRight({
         accessoryRight={() => (
           <Icon
             name={iconRight || "eye-outline"} 
-            fill="#B562FE"
+            fill="#ACACAC"
             onPress={onIconRightPress} 
           />
         )}
