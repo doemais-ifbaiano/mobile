@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { CheckBox, Layout, Text, Button, Icon } from "@ui-kitten/components";
 import React, { useState } from "react";
-import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native";
+import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
@@ -15,7 +15,7 @@ type LoginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
 export default function LoginScreen() {
   const navigation = useNavigation<LoginParamsList>();
   const [checked, setChecked] = useState(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false); 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(prevState => !prevState);
   };
@@ -37,21 +37,20 @@ export default function LoginScreen() {
             <Text category="h1" style={styles.title}>
               Login
             </Text>
-            <Text category="h6" style={styles.text}>
-              Por favor, insira um email/CPF e senha para entrar.
-            </Text>
           </Layout>
 
           <Layout style={styles.inputs}>
-            <InputIconLeft label="" placeholder="Email/CPF" textColor="#000000" iconName="person-outline"></InputIconLeft>
-            
-            {/* Campo de senha com ícone de olho */}
-            <InputIconLeftAndRight 
-              label="" 
-              placeholder="Senha" 
-              textColor="#000000" 
-              iconLeft="lock" 
-              iconRight={isPasswordVisible ? "eye-off-outline" : "eye-outline"} 
+            <InputIconLeft label="Seu e-mail *"
+              placeholder="ex.john@doe.com"
+              textColor="#ACACAC"
+              iconName="person-outline"
+            />
+            <InputIconLeftAndRight
+              label="Sua senha *"
+              placeholder="Sua senha"
+              textColor="#ACACAC"
+              iconLeft="lock"
+              iconRight={isPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isPasswordVisible}
               onIconRightPress={togglePasswordVisibility}
             />
@@ -70,12 +69,10 @@ export default function LoginScreen() {
           <Layout style={styles.buttonContainer}>
             <ButtonGlobal title="Entrar" appeareances="" onPress={() => navigation.navigate("Register")} />
             <ButtonEnterGoogle></ButtonEnterGoogle>
-            <Text category="h6" style={styles.textButtonRegister}>
-              Caso ainda não possua uma conta:
-            </Text>
+            <View style={styles.divider}></View>
             <ButtonGlobal
-              title="Cadastrar-se"
-              appeareances="outline"
+              title="Cadastrar-me"
+              appeareances=""
               onPress={() => navigation.navigate("Register")}
             />
           </Layout>

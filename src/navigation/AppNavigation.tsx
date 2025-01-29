@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LandingPageScreen from "../screens/landingPage";
-import RegisterScreen from "../screens/registerPage";
+import RegisterScreen from "../screens/registerPage1";
 import LoginScreen from "../screens/login";
 import RecoverPasswordScreen from "../screens/recoverPassword";
 import NewPasswordScreen from "../screens/newPassword";
