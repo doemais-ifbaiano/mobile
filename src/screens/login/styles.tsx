@@ -8,12 +8,11 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   logo: {
-    marginTop: "10%",
     alignItems: "center",
     flex: 1,
   },
   box: {
-    width: "90%",
+    width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: "8%",
@@ -33,11 +32,12 @@ const styles = StyleSheet.create({
     marginVertical: "5%",
   },
   inputs: {
-    width: "90%",
-    marginBottom: "5%",
+    width: "98%",
+    marginBottom: "3%",
+    padding: 3,
   },
   checkboxContainer: {
-    marginTop: "4%",
+    width: "95%",
     flexDirection: 'row', 
     alignItems: 'center', 
   },
