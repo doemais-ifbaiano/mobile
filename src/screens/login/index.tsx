@@ -55,17 +55,15 @@ export default function LoginScreen() {
               secureTextEntry={!isPasswordVisible}
               onIconRightPress={togglePasswordVisibility}
             />
+            <Layout style={styles.checkboxContainer}>
+              <CheckBox checked={checked} onChange={nextChecked => setChecked(nextChecked)}>
+                Manter-me conectado(a)
+              </CheckBox>
+              <Button appearance="ghost" onPress={() => navigation.navigate("RecoverPassword")}>
+                Esqueceu sua senha?
+              </Button>
+            </Layout>
           </Layout>
-
-          <Layout style={styles.checkboxContainer}>
-            <CheckBox checked={checked} onChange={nextChecked => setChecked(nextChecked)}>
-              Manter-me conectado(a)
-            </CheckBox>
-            <Button appearance="ghost" onPress={() => navigation.navigate("RecoverPassword")}>
-              Esqueceu sua senha?
-            </Button>
-          </Layout>
-
           {/* Botão */}
           <Layout style={styles.buttonContainer}>
             <ButtonGlobal title="Entrar" appeareances="" onPress={() => navigation.navigate("Register1")} />
