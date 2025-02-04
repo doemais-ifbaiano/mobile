@@ -6,4 +6,5 @@ export type RoutesParams = {
     Login: undefined;
     RecoverPassword: undefined;
     NewPassword: undefined;
+    HomePage: undefined;
 };

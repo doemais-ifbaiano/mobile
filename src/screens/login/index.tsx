@@ -66,7 +66,7 @@ export default function LoginScreen() {
           </Layout>
           {/* Botão */}
           <Layout style={styles.buttonContainer}>
-            <ButtonGlobal title="Entrar" appeareances="" onPress={() => navigation.navigate("Register1")} />
+            <ButtonGlobal title="Entrar" appeareances="" onPress={() => navigation.navigate("HomePage")} />
             <ButtonEnterGoogle></ButtonEnterGoogle>
             <View style={styles.divider}></View>
             <ButtonGlobal
