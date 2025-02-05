@@ -1,7 +1,14 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { CheckBox, Layout, Text, Button, Icon } from "@ui-kitten/components";
-import React, { useState } from "react";
-import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, Alert } from "react-native";
+import { CheckBox, Layout, Text, Button } from "@ui-kitten/components";
+import React, { useState, useEffect } from "react";
+import { 
+  Image, 
+  KeyboardAvoidingView, 
+  Platform, 
+  ScrollView, 
+  View, 
+  Alert 
+} from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
@@ -10,49 +17,58 @@ import InputIconLeft from "../../components/inputs/inputIconLeft";
 import InputIconLeftAndRight from "../../components/inputs/inputIconsLeftAndRight";
 import ButtonEnterGoogle from "../../components/buttons/buttonEnterGoogle";
 import { auth } from "../../firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 type LoginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
 
 export default function LoginScreen() {
   const navigation = useNavigation<LoginParamsList>();
-  const [checked, setChecked] = useState(false); // Estado para manter usuário conectado
-  const [email, setEmail] = useState(""); // Estado para o email
-  const [password, setPassword] = useState(""); // Estado para a senha
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Estado para visibilidade da senha
+  const [checked, setChecked] = useState(false); 
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState(""); 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  // Função para alternar a visibilidade da senha
+  // Verificar se o usuário já está logado ao abrir o app
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const keepLoggedIn = await AsyncStorage.getItem("keepLoggedIn");
+      if (keepLoggedIn === "true") {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            navigation.replace("Home");
+          }
+        });
+      }
+    };
+    checkLoginStatus();
+  }, []);
+
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(prevState => !prevState);
   };
 
   // Função de login
-const handleLogin = async () => {
-  if (!email || !password) {
-    Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
-    return;
-  }
-
-  try {
-    // Autenticação com Firebase
-    await signInWithEmailAndPassword(auth, email, password);
-
-    // Se o usuário marcou "Lembrar-me", armazena a preferência no AsyncStorage
-    if (checked) {
-      await AsyncStorage.setItem("keepLoggedIn", "true");
-    } else {
-      await AsyncStorage.removeItem("keepLoggedIn"); // Caso contrário, remova a preferência
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      return;
     }
 
-    // Navegar para a tela Home
-    navigation.navigate("Home");
-  } catch (error) {
-    Alert.alert("Erro", "Credenciais inválidas ou erro ao autenticar.");
-    console.error("Erro no login:", error);
-  }
-};
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      if (checked) {
+        await AsyncStorage.setItem("keepLoggedIn", "true");
+      } else {
+        await AsyncStorage.removeItem("keepLoggedIn"); 
+      }
+
+      navigation.replace("Home");
+    } catch (error) {
+      Alert.alert("Erro", "Credenciais inválidas ou erro ao autenticar.");
+      console.error("Erro no login:", error);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -103,7 +119,7 @@ const handleLogin = async () => {
             </Layout>
           </Layout>
           
-          {/* Botão */}
+          {/* Botões */}
           <Layout style={styles.buttonContainer}>
             <ButtonGlobal title="Entrar" appeareances="" onPress={handleLogin} />
             <ButtonEnterGoogle />
