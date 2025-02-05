@@ -12,10 +12,8 @@ const firebaseConfig = {
   appId: Constants.expoConfig?.extra?.expoPublicFirebaseAppId,
 };
 
-// Inicializa o Firebase App
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
-// Inicializa a autenticação com persistência no AsyncStorage
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage),
 });
