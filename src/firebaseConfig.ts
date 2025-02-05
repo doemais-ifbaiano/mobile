@@ -1,16 +1,17 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import Constants from "expo-constants";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCVDdcsN5w6lmn8K_Qyw4aggt7pwSu070c",
-  authDomain: "doe-mais-8892d.firebaseapp.com",
-  projectId: "doe-mais-8892d",
-  storageBucket: "doe-mais-8892d.appspot.com",
-  messagingSenderId: "175852613799",
-  appId: "1:175852613799:web:c86772c6ea9f492438ab82",
+  apiKey: Constants.expoConfig?.extra?.expoPublicFirebaseApiKey,
+  authDomain: Constants.expoConfig?.extra?.expoPublicFirebaseAuthDomain,
+  projectId: Constants.expoConfig?.extra?.expoPublicFirebaseProjectId,
+  storageBucket: Constants.expoConfig?.extra?.expoPublicFirebaseStorageBucket,
+  messagingSenderId: Constants.expoConfig?.extra?.expoPublicFirebaseMessagingSenderId,
+  appId: Constants.expoConfig?.extra?.expoPublicFirebaseAppId,
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export { auth };
+export { app, auth };
