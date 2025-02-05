@@ -19,11 +19,29 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.r1yck.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "build": { "babel": { "include": [ "@ui-kitten/components" ] } }
+      "build": {
+        "babel": {
+          "include": [
+            "@ui-kitten/components"
+          ]
+        }
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6f7a6bad-1b64-4b4b-8865-4d1830e96067"
+      },
+      "expoPublicFirebaseApiKey": "AIzaSyCVDdcsN5w6lmn8K_Qyw4aggt7pwSu070c",
+      "expoPublicFirebaseAuthDomain": "doe-mais-8892d.firebaseapp.com",
+      "expoPublicFirebaseProjectId": "doe-mais-8892d",
+      "expoPublicFirebaseStorageBucket": "doe-mais-8892d.appspot.com",
+      "expoPublicFirebaseMessagingSenderId": "175852613799",
+      "expoPublicFirebaseAppId": "1:175852613799:web:c86772c6ea9f492438ab82"
     }
   }
 }

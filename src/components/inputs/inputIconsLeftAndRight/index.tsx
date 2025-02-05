@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
-import { Input, Text, IconElement, Icon } from "@ui-kitten/components";
+import { Input, Icon, IconElement } from "@ui-kitten/components";
 import { styles } from "./styles";
 
+// Expansão do tipo InputGlobalProps para incluir value e onChangeText
 interface InputGlobalProps {
   label: ReactNode;
   placeholder: string;
@@ -10,6 +11,8 @@ interface InputGlobalProps {
   iconLeft?: string;
   iconRight?: string;
   onIconRightPress?: () => void;
+  value: string; // Adiciona a propriedade value para controlar o valor do input
+  onChangeText: (text: string) => void; // Adiciona a função onChangeText para atualizar o valor
 }
 
 export default function InputIconLeftAndRight({
@@ -20,8 +23,11 @@ export default function InputIconLeftAndRight({
   iconLeft,
   iconRight,
   onIconRightPress,
+  value,
+  onChangeText,
 }: InputGlobalProps) {
 
+  // Função para renderizar o ícone da esquerda
   const left = (props: any): IconElement => (
     <Icon
       {...props}
@@ -30,6 +36,7 @@ export default function InputIconLeftAndRight({
     />
   );
 
+  // Função para renderizar o ícone da direita
   const right = (props: any): IconElement => (
     <Icon
       {...props}
@@ -57,6 +64,8 @@ export default function InputIconLeftAndRight({
             onPress={onIconRightPress}
           />
         )}
+        value={value} // Passa o valor para o input
+        onChangeText={onChangeText} // Passa a função para atualizar o valor
       />
     </>
   );
