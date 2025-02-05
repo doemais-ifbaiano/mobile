@@ -23,15 +23,11 @@ export default function RegisterScreen() {
   const navigation = useNavigation<RegisterParamsList>();
   const theme = useTheme();
 
-  // Estados para os campos
   const [fullName, setFullName] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  // Função de validação e cadastro Firebase
   const handleNext = () => {
     if (!fullName || !cpfCnpj || !birthDate || !phone) {
       Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
@@ -45,8 +41,6 @@ export default function RegisterScreen() {
       phone,
     });
   };
-
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

@@ -56,8 +56,7 @@ export default function RegisterScreen2() {
   
     try {
       await signUp(email, password);
-  
-      // Aqui você pode salvar os outros dados no banco de dados, se necessário
+
       console.log("Usuário cadastrado com:", { fullName, cpfCnpj, birthDate, phone, email });
   
       Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
