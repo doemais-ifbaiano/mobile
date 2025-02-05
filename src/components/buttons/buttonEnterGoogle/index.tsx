@@ -9,6 +9,7 @@ export default function ButtonEnterGoogle() {
     clientId: Constants.expoConfig?.extra?.expoClientId,
     androidClientId: Constants.expoConfig?.extra?.androidClientId,
     iosClientId: Constants.expoConfig?.extra?.iosClientId,
+    redirectUri: "https://doe-mais-8892d.firebaseapp.com/__/auth/handler",
   });
 
   const handleGoogleLogin = async () => {
