@@ -119,7 +119,7 @@ export default function LoginScreen() {
             </Layout>
           </Layout>
           
-          {/* Botão */}
+          {/* Botões */}
           <Layout style={styles.buttonContainer}>
             <ButtonGlobal title="Entrar" appeareances="" onPress={handleLogin} />
             <ButtonEnterGoogle />

@@ -41,7 +41,10 @@
       "expoPublicFirebaseProjectId": "doe-mais-8892d",
       "expoPublicFirebaseStorageBucket": "doe-mais-8892d.appspot.com",
       "expoPublicFirebaseMessagingSenderId": "175852613799",
-      "expoPublicFirebaseAppId": "1:175852613799:web:c86772c6ea9f492438ab82"
+      "expoPublicFirebaseAppId": "1:175852613799:web:c86772c6ea9f492438ab82",
+      "clientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
+      "androidClientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
+      "iosClientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com"
     }
   }
 }
