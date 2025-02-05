@@ -1,19 +1,31 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useEffect, useState } from "react";
 import LandingPageScreen from "../screens/landingPage";
 import RegisterScreen1 from "../screens/registerPage1";
 import RegisterScreen2 from "../screens/registerPage2";
 import LoginScreen from "../screens/login";
 import RecoverPasswordScreen from "../screens/recoverPassword";
 import NewPasswordScreen from "../screens/newPassword";
-import HomeScreen from "../screens/home"
+import HomeScreen from "../screens/home";
+import { checkUserSession } from "../services/authService";
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
+    const [initialRoute, setInitialRoute] = useState<string | null>(null);
+
+    useEffect(() => {
+        checkUserSession((user) => {
+            setInitialRoute(user ? "Home" : "LandingPage");
+        });
+    }, []);
+
+    if (!initialRoute) return null;
+
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="LandingPage" screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="LandingPage" component={LandingPageScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} /> 
                 <Stack.Screen name="Register1" component={RegisterScreen1} /> 

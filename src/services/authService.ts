@@ -1,6 +1,11 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged 
+} from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FirebaseAuthError } from "./firebaseErrors";
 
 // Registrar usuário
@@ -14,26 +19,39 @@ export const signUp = async (email: string, password: string) => {
 };
 
 // Login
-export const signIn = async (email: string, password: string) => {
+export const signIn = async (email: string, password: string, keepLoggedIn: boolean) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    
+    if (keepLoggedIn) {
+      await AsyncStorage.setItem("keepLoggedIn", "true");
+    } else {
+      await AsyncStorage.removeItem("keepLoggedIn");
+    }
+
     return userCredential.user;
   } catch (error: any) {
     throw new FirebaseAuthError(error.code);
   }
 };
 
-
-// Checkbox
+// Verifica se o usuário deve permanecer logado
 export const checkUserSession = (callback: (user: any) => void) => {
-  return onAuthStateChanged(auth, (user) => {
-    callback(user);
+  AsyncStorage.getItem("keepLoggedIn").then((value) => {
+    if (value === "true") {
+      return onAuthStateChanged(auth, (user) => {
+        callback(user);
+      });
+    } else {
+      callback(null);
+    }
   });
 };
 
 // Logout
 export const logout = async () => {
   try {
+    await AsyncStorage.removeItem("keepLoggedIn"); 
     await signOut(auth);
   } catch (error) {
     console.error("Erro ao sair:", error);
