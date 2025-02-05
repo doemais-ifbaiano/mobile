@@ -1,14 +1,15 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { FirebaseAuthError } from "./firebaseErrors";
 
 // Registrar usuário
 export const signUp = async (email: string, password: string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return userCredential.user;
-  } catch (error) {
-    console.error("Erro ao registrar usuário:", error);
-    throw error;
+  } catch (error: any) {
+    throw new FirebaseAuthError(error.code);
   }
 };
 
@@ -17,10 +18,17 @@ export const signIn = async (email: string, password: string) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user;
-  } catch (error) {
-    console.error("Erro ao fazer login:", error);
-    throw error;
+  } catch (error: any) {
+    throw new FirebaseAuthError(error.code);
   }
+};
+
+
+// Checkbox
+export const checkUserSession = (callback: (user: any) => void) => {
+  return onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
 };
 
 // Logout

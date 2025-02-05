@@ -6,6 +6,7 @@ import RegisterScreen2 from "../screens/registerPage2";
 import LoginScreen from "../screens/login";
 import RecoverPasswordScreen from "../screens/recoverPassword";
 import NewPasswordScreen from "../screens/newPassword";
+import HomeScreen from "../screens/home"
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function AppNavigation() {
                 <Stack.Screen name="Register2" component={RegisterScreen2} /> 
                 <Stack.Screen name="RecoverPassword" component={RecoverPasswordScreen} /> 
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
+                <Stack.Screen name="Home" component={HomeScreen} /> 
             </Stack.Navigator>
         </NavigationContainer>
     );
