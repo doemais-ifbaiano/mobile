@@ -1,6 +1,6 @@
+import React, { useState } from "react"; // Importando useState
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text, useTheme, Icon } from "@ui-kitten/components";
-import React from "react";
 import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
@@ -13,6 +13,9 @@ type RecoverPasswordParamsList = NativeStackNavigationProp<RoutesParams, "Recove
 export default function RecoverPasswordScreen() {
   const navigation = useNavigation<RecoverPasswordParamsList>();
   const theme = useTheme();
+  
+  // Estado do e-mail
+  const [email, setEmail] = useState("");
 
   return (
     <KeyboardAvoidingView
@@ -48,11 +51,14 @@ export default function RecoverPasswordScreen() {
           </Layout>
 
           <Layout style={styles.inputs}>
-            <InputGlobal 
-            label={<Text>Seu e-mail <Text style={{ color: "red" }}>*</Text></Text>}
-            placeholder="ex.john@doe.com" 
-            iconName="person-outline">
-            </InputGlobal>
+            <InputGlobal
+              label={<Text>Seu e-mail <Text style={{ color: "red" }}>*</Text></Text>}
+              placeholder="ex.john@doe.com"
+              iconName="person-outline"
+              value={email} // Estado do e-mail
+              onChangeText={setEmail} // Atualiza o estado ao digitar
+              keyboardType="email-address"
+            />
           </Layout>
 
           {/* Botão */}
