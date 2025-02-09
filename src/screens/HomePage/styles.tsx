@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     paddingVertical: "10%",
     flexGrow: 1,
-
+    textAlign: "center"
   },
   cardButton:{
     width: "100%",
