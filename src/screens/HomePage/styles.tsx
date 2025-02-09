@@ -47,6 +47,54 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: "2%",
   },
+  buttonDropDowm: {
+    width: "28%",
+    height: "10%",
+    borderRadius: 30,
+    alignSelf: "center",
+    left: "29%", 
+  },
+  button: {
+    width: "28%",
+    height: "10%",
+    borderRadius: 30,
+    alignSelf: "center",
+  },
+  cardsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#F2EDFA",
+    height: "27%",
+    marginBottom: "5%",
+
+  },
+  card:{
+    width: "34%",
+    height: "100%",
+    backgroundColor: "#F2EDFA",
+    paddingHorizontal: "3%",
+    paddingVertical: "4%",
+    flexDirection: "column",
+    justifyContent: "space-between",
+
+  },
+  cardImage:{
+    width: "100%",
+    height: "48%"
+
+  },
+  cardDescription:{
+    fontSize: 10,
+    paddingVertical: "10%",
+    flexGrow: 1,
+
+  },
+  cardButton:{
+    width: "100%",
+    height: "18%",
+    borderRadius: 30,
+    alignSelf: "center",
+  }
 });
 
 export default styles;
