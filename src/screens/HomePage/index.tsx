@@ -25,9 +25,9 @@ export default function HomePageScreen() {
   const sosAnimaisImg = require("../../../assets/logos/sosAnimaisDeRua.png");
   const fundacaoArtesImg = require("../../../assets/logos/fundacaoCantosDasArtes.png");
   const institutions = [
-    { id: 1, name: "APAE", image: apaeImg, description: "APAE - Associação de Pais e Amigos dos Excepcionais" },
-    { id: 2, name: "SOS Animais de Rua", image: sosAnimaisImg, description: "SOS Animais de Rua" },
-    { id: 3, name: "Fundação Canto das Artes", image: fundacaoArtesImg, description: "Fundação Cantos das Artes" },
+    { id: 1, image: apaeImg, name: "APAE - Associação de Pais e Amigos dos Excepcionais" },
+    { id: 2, image: sosAnimaisImg, name: "SOS Animais de Rua" },
+    { id: 3, image: fundacaoArtesImg, name: "Fundação Cantos das Artes" },
   ];
 
   return (
@@ -87,7 +87,7 @@ export default function HomePageScreen() {
                 resizeMode="cover"
               />
               <Text style={styles.cardDescription}>
-                {institution.description}
+                {institution.name}
               </Text>
               <Button style={styles.cardButton}>
                 Veja Mais
@@ -106,7 +106,7 @@ export default function HomePageScreen() {
                 resizeMode="cover"
               />
               <Text style={styles.cardDescription}>
-                {institution.description}
+                {institution.name}
               </Text>
               <Button style={styles.cardButton}>
                 Veja Mais
