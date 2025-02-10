@@ -16,6 +16,8 @@ export default function NewPasswordScreen() {
 
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [newPassword, setNewPassword] = useState(""); // Adicionando controle para a nova senha
+  const [confirmPassword, setConfirmPassword] = useState(""); // Adicionando controle para a confirmação da senha
 
   const toggleNewPasswordVisibility = () => {
     setIsNewPasswordVisible(prevState => !prevState);
@@ -61,6 +63,7 @@ export default function NewPasswordScreen() {
             </Text>
           </Layout>
 
+          {/* Inputs */}
           <Layout style={styles.inputs}>
             <InputIconLeftAndRight
               label={<Text>Senha <Text style={{ color: "red" }}>*</Text></Text>}
@@ -68,7 +71,9 @@ export default function NewPasswordScreen() {
               iconLeft="lock"
               iconRight={isNewPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isNewPasswordVisible}
-              onIconRightPress={toggleNewPasswordVisibility} 
+              onIconRightPress={toggleNewPasswordVisibility}
+              value={newPassword} // Controlando o valor da senha
+              onChangeText={setNewPassword} // Atualizando o estado da senha
             />
             <InputIconLeftAndRight
               label={<Text>Confirmar senha <Text style={{ color: "red" }}>*</Text></Text>}
@@ -76,7 +81,9 @@ export default function NewPasswordScreen() {
               iconLeft="lock"
               iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isConfirmPasswordVisible}
-              onIconRightPress={toggleConfirmPasswordVisibility} 
+              onIconRightPress={toggleConfirmPasswordVisibility}
+              value={confirmPassword} // Controlando o valor da confirmação da senha
+              onChangeText={setConfirmPassword} // Atualizando o estado da confirmação da senha
             />
           </Layout>
 
@@ -85,7 +92,14 @@ export default function NewPasswordScreen() {
             <ButtonGlobal
               title="Salvar"
               appeareances=""
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => {
+                // Lógica para verificar se as senhas coincidem
+                if (newPassword === confirmPassword) {
+                  navigation.navigate("Login"); // Navega para a tela de Login se as senhas coincidirem
+                } else {
+                  alert("As senhas não coincidem!"); // Mensagem de erro se as senhas não coincidirem
+                }
+              }}
             />
           </Layout>
         </Layout>
