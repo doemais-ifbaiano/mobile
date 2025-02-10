@@ -26,6 +26,7 @@ export default function ButtonEnterGoogle() {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handleGoogleLogin}>
+        {/* Substitua o ícone aqui */}
         <Image style={styles.icon} source={require("../../../../assets/flat-color-icons_google.png")} />
         <Text>Entrar com Google</Text>
       </TouchableOpacity>
