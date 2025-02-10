@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "175852613799",
+    "firebase_url": "https://doe-mais-8892d-default-rtdb.firebaseio.com",
+    "project_id": "doe-mais-8892d",
+    "storage_bucket": "doe-mais-8892d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175852613799:android:f0e69d51f596d9e338ab82",
+        "android_client_info": {
+          "package_name": "com.pce.doemais"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175852613799-o9ik5v38trgac6qrm4sl0i3qok0getq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pce.doemais",
+            "certificate_hash": "42015fe09b9a1a6fc75caba40cc42c09f9728f2b"
+          }
+        },
+        {
+          "client_id": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4JiU5cBu2mzwJZqlkiMY8nUqqM7e-Zic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

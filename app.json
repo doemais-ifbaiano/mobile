@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobile",
-    "slug": "mobile",
+    "slug": "doemais",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.r1yck.mobile"
+      "package": "com.pce.doemais",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -34,7 +35,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "6f7a6bad-1b64-4b4b-8865-4d1830e96067"
+        "projectId": "079a6525-beee-4957-8c55-6afb0bde966b"
       },
       "expoPublicFirebaseApiKey": "AIzaSyCVDdcsN5w6lmn8K_Qyw4aggt7pwSu070c",
       "expoPublicFirebaseAuthDomain": "doe-mais-8892d.firebaseapp.com",
@@ -45,6 +46,7 @@
       "clientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
       "androidClientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
       "iosClientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com"
-    }
+    },
+    "owner": "r1yck"
   }
 }

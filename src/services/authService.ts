@@ -43,10 +43,10 @@ export const signIn = async (email: string, password: string, keepLoggedIn: bool
 export const signInWithGoogle = async (response: any) => {
   try {
     if (response?.type === "success") {
-      const { idToken } = response.params;
+      const { id_token } = response.authentication;
 
-      if (idToken) {
-        const credential = GoogleAuthProvider.credential(idToken);
+      if (id_token) {
+        const credential = GoogleAuthProvider.credential(id_token);
         const userCredential = await signInWithCredential(auth, credential);
         return userCredential.user;
       } else {
