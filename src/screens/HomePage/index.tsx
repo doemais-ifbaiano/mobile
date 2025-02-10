@@ -7,7 +7,7 @@ import { RoutesParams } from "../../navigation/routesParams";
 
 export default function HomeScreen() {
   const auth = getAuth();
-  const navigation = useNavigation<NativeStackNavigationProp<RoutesParams, "Home">>();
+  const navigation = useNavigation<NativeStackNavigationProp<RoutesParams, "HomePage">>();
 
   const handleLogout = async () => {
     try {

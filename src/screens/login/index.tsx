@@ -36,7 +36,7 @@ export default function LoginScreen() {
       if (keepLoggedIn === "true") {
         onAuthStateChanged(auth, (user) => {
           if (user) {
-            navigation.replace("Home");
+            navigation.replace("HomePage");
           }
         });
       }
@@ -63,7 +63,7 @@ export default function LoginScreen() {
         await AsyncStorage.removeItem("keepLoggedIn"); 
       }
 
-      navigation.replace("Home");
+      navigation.replace("HomePage");
     } catch (error) {
       Alert.alert("Erro", "Credenciais inválidas ou erro ao autenticar.");
       console.error("Erro no login:", error);
