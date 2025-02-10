@@ -14,17 +14,17 @@ export default function NewPasswordScreen() {
   const navigation = useNavigation<NewPasswordParamsList>();
   const theme = useTheme();
 
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [newPassword, setNewPassword] = useState(""); // Adicionando controle para a nova senha
+  const [confirmPassword, setConfirmPassword] = useState(""); // Adicionando controle para a confirmação da senha
 
   const toggleNewPasswordVisibility = () => {
-    setIsNewPasswordVisible((prevState) => !prevState);
+    setIsNewPasswordVisible(prevState => !prevState);
   };
 
   const toggleConfirmPasswordVisibility = () => {
-    setIsConfirmPasswordVisible((prevState) => !prevState);
+    setIsConfirmPasswordVisible(prevState => !prevState);
   };
 
   return (
@@ -35,7 +35,6 @@ export default function NewPasswordScreen() {
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         <Layout style={styles.container}>
 
-          {/* Botão de voltar */}
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.navigate("Login")}
@@ -49,7 +48,9 @@ export default function NewPasswordScreen() {
 
           {/* Logo */}
           <Layout style={styles.logo}>
-            <Image source={require("../../../assets/logos/logo-media.png")} />
+            <Image
+              source={require("../../../assets/logos/logo-media.png")}
+            />
           </Layout>
 
           {/* Caixa de textos */}
@@ -62,7 +63,7 @@ export default function NewPasswordScreen() {
             </Text>
           </Layout>
 
-          {/* Campos de senha */}
+          {/* Inputs */}
           <Layout style={styles.inputs}>
             <InputIconLeftAndRight
               label={<Text>Senha <Text style={{ color: "red" }}>*</Text></Text>}
@@ -71,8 +72,8 @@ export default function NewPasswordScreen() {
               iconRight={isNewPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isNewPasswordVisible}
               onIconRightPress={toggleNewPasswordVisibility}
-              value={newPassword} 
-              onChangeText={setNewPassword} 
+              value={newPassword} // Controlando o valor da senha
+              onChangeText={setNewPassword} // Atualizando o estado da senha
             />
             <InputIconLeftAndRight
               label={<Text>Confirmar senha <Text style={{ color: "red" }}>*</Text></Text>}
@@ -81,8 +82,8 @@ export default function NewPasswordScreen() {
               iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isConfirmPasswordVisible}
               onIconRightPress={toggleConfirmPasswordVisibility}
-              value={confirmPassword} 
-              onChangeText={setConfirmPassword} 
+              value={confirmPassword} // Controlando o valor da confirmação da senha
+              onChangeText={setConfirmPassword} // Atualizando o estado da confirmação da senha
             />
           </Layout>
 
@@ -91,7 +92,14 @@ export default function NewPasswordScreen() {
             <ButtonGlobal
               title="Salvar"
               appeareances=""
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => {
+                // Lógica para verificar se as senhas coincidem
+                if (newPassword === confirmPassword) {
+                  navigation.navigate("Login"); // Navega para a tela de Login se as senhas coincidirem
+                } else {
+                  alert("As senhas não coincidem!"); // Mensagem de erro se as senhas não coincidirem
+                }
+              }}
             />
           </Layout>
         </Layout>

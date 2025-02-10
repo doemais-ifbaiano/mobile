@@ -1,7 +1,7 @@
-import React, { useState } from "react"; // Importando useState
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text, useTheme, Icon } from "@ui-kitten/components";
-import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import React, { useState } from "react"; // Importação do useState
+import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Keyboard } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
@@ -13,9 +13,9 @@ type RecoverPasswordParamsList = NativeStackNavigationProp<RoutesParams, "Recove
 export default function RecoverPasswordScreen() {
   const navigation = useNavigation<RecoverPasswordParamsList>();
   const theme = useTheme();
-  
-  // Estado do e-mail
-  const [email, setEmail] = useState("");
+
+  // Estado para armazenar o valor do e-mail
+  const [email, setEmail] = useState<string>("");
 
   return (
     <KeyboardAvoidingView
@@ -51,13 +51,14 @@ export default function RecoverPasswordScreen() {
           </Layout>
 
           <Layout style={styles.inputs}>
+            {/* Passando value e onChangeText para InputGlobal */}
             <InputGlobal
               label={<Text>Seu e-mail <Text style={{ color: "red" }}>*</Text></Text>}
               placeholder="ex.john@doe.com"
               iconName="person-outline"
-              value={email} // Estado do e-mail
-              onChangeText={setEmail} // Atualiza o estado ao digitar
-              keyboardType="email-address"
+              value={email} // Passando o valor atual do e-mail
+              onChangeText={(text: string) => setEmail(text)} // Função para atualizar o e-mail
+              keyboardType="email-address" // Definindo o teclado como e-mail
             />
           </Layout>
 
@@ -66,7 +67,8 @@ export default function RecoverPasswordScreen() {
             <ButtonGlobal
               title="Enviar link de recuperação"
               appeareances=""
-              onPress={() => navigation.navigate("NewPassword")}
+              
+              onPress={() => { Keyboard.dismiss(); navigation.navigate("NewPassword")}}
             />
           </Layout>
         </Layout>
