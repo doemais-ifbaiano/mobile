@@ -8,14 +8,15 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
+  Keyboard
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message"; 
 import { RoutesParams } from "../../navigation/routesParams";
 import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
-import { signUp } from "../../services/authService"; // Importação da autenticação
+import { maskCpfCnpj, maskDate, maskPhone } from "../../utils/masks";
 
 type RegisterParamsList = NativeStackNavigationProp<RoutesParams, "Register1">;
 
@@ -29,11 +30,62 @@ export default function RegisterScreen() {
   const [phone, setPhone] = useState("");
 
   const handleNext = () => {
+    Keyboard.dismiss(); 
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+    const cpfCnpjRegex = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})$/;
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+  
     if (!fullName || !cpfCnpj || !birthDate || !phone) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Por favor, preencha todos os campos obrigatórios.",
+      });
       return;
     }
-
+  
+    if (!nameRegex.test(fullName)) {
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Nome inválido. Use apenas letras e espaços.",
+      });
+      return;
+    }
+  
+    if (!cpfCnpjRegex.test(cpfCnpj)) {
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "CPF ou CNPJ inválido. Verifique o formato.",
+      });
+      return;
+    }
+  
+    if (!dateRegex.test(birthDate)) {
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Data de nascimento inválida. Use o formato DD/MM/AAAA.",
+      });
+      return;
+    }
+  
+    if (!phoneRegex.test(phone)) {
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Número de telefone inválido. Use o formato (99) 99999-9999.",
+      });
+      return;
+    }
+  
     navigation.navigate("Register2", {
       fullName,
       cpfCnpj,
@@ -89,6 +141,7 @@ export default function RegisterScreen() {
                   textColor={theme["text-basic-color"]}
                   value={fullName}
                   onChangeText={setFullName}
+                  keyboardType="default"
                 />
               </Layout>
               <Layout style={styles.inputWrapper}>
@@ -98,7 +151,8 @@ export default function RegisterScreen() {
                   iconName="credit-card-outline"
                   textColor={theme["text-basic-color"]}
                   value={cpfCnpj}
-                  onChangeText={setCpfCnpj}
+                  onChangeText={(text) => setCpfCnpj(maskCpfCnpj(text))}
+                  keyboardType="numeric"
                 />
               </Layout>
               <Layout style={styles.inputWrapper}>
@@ -108,7 +162,8 @@ export default function RegisterScreen() {
                   iconName="calendar-outline"
                   textColor={theme["text-basic-color"]}
                   value={birthDate}
-                  onChangeText={setBirthDate}
+                  onChangeText={(text) => setBirthDate(maskDate(text))}
+                  keyboardType="numeric"
                 />
               </Layout>
               <Layout style={styles.inputWrapper}>
@@ -118,7 +173,8 @@ export default function RegisterScreen() {
                   iconName="phone-outline"
                   textColor={theme["text-basic-color"]}
                   value={phone}
-                  onChangeText={setPhone}
+                  onChangeText={(text) => setPhone(maskPhone(text))}
+                  keyboardType="phone-pad"
                 />
               </Layout>
               <ButtonGlobal title="Próximo" appeareances="" onPress={handleNext} />
@@ -126,6 +182,9 @@ export default function RegisterScreen() {
           </Layout>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      {/* Toast component */}
+      <Toast />
     </SafeAreaView>
   );
 }

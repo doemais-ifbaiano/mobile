@@ -17,7 +17,7 @@ export default function AppNavigation() {
 
     useEffect(() => {
         checkUserSession((user) => {
-            setInitialRoute(user ? "Home" : "LandingPage");
+            setInitialRoute(user ? "HomePage" : "LandingPage");
         });
     }, []);
 
@@ -32,7 +32,7 @@ export default function AppNavigation() {
                 <Stack.Screen name="Register2" component={RegisterScreen2} /> 
                 <Stack.Screen name="RecoverPassword" component={RecoverPasswordScreen} /> 
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
-                <Stack.Screen name="Home" component={HomePageScreen} /> 
+                <Stack.Screen name="HomePage" component={HomePageScreen} /> 
             </Stack.Navigator>
         </NavigationContainer>
     );

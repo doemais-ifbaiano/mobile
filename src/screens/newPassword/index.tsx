@@ -1,12 +1,13 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text, useTheme, Icon } from "@ui-kitten/components";
 import React, { useState } from "react";
-import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Keyboard } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
 import styles from "./styles";
 import InputIconLeftAndRight from "../../components/inputs/inputIconsLeftAndRight";
+import Toast from 'react-native-toast-message';
 
 type NewPasswordParamsList = NativeStackNavigationProp<RoutesParams, "NewPassword">;
 
@@ -16,8 +17,8 @@ export default function NewPasswordScreen() {
 
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
-  const [newPassword, setNewPassword] = useState(""); // Adicionando controle para a nova senha
-  const [confirmPassword, setConfirmPassword] = useState(""); // Adicionando controle para a confirmação da senha
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const toggleNewPasswordVisibility = () => {
     setIsNewPasswordVisible(prevState => !prevState);
@@ -27,6 +28,56 @@ export default function NewPasswordScreen() {
     setIsConfirmPasswordVisible(prevState => !prevState);
   };
 
+  const handleSave = () => {
+    Keyboard.dismiss();
+
+    if (!newPassword.trim() || !confirmPassword.trim()) {
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'Os campos não podem estar vazios!',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'A senha deve ter no mínimo 6 caracteres!',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'As senhas não coincidem!',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      return;
+    }
+
+    navigation.navigate("Login");
+    Toast.show({
+      type: 'success',
+      position: 'top',
+      text1: 'Senha alterada!',
+      text2: 'Sua senha foi alterada com sucesso.',
+      visibilityTime: 3000,
+      autoHide: true,
+    });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -34,7 +85,6 @@ export default function NewPasswordScreen() {
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         <Layout style={styles.container}>
-
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.navigate("Login")}
@@ -46,24 +96,15 @@ export default function NewPasswordScreen() {
             />
           </TouchableOpacity>
 
-          {/* Logo */}
           <Layout style={styles.logo}>
-            <Image
-              source={require("../../../assets/logos/logo-media.png")}
-            />
+            <Image source={require("../../../assets/logos/logo-media.png")} />
           </Layout>
 
-          {/* Caixa de textos */}
           <Layout style={styles.box}>
-            <Text category="h1" style={styles.title}>
-              Cadastrar nova senha
-            </Text>
-            <Text category="h6" style={styles.text}>
-              Digite sua nova senha
-            </Text>
+            <Text category="h1" style={styles.title}>Cadastrar nova senha</Text>
+            <Text category="h6" style={styles.text}>Digite sua nova senha</Text>
           </Layout>
 
-          {/* Inputs */}
           <Layout style={styles.inputs}>
             <InputIconLeftAndRight
               label={<Text>Senha <Text style={{ color: "red" }}>*</Text></Text>}
@@ -72,8 +113,8 @@ export default function NewPasswordScreen() {
               iconRight={isNewPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isNewPasswordVisible}
               onIconRightPress={toggleNewPasswordVisibility}
-              value={newPassword} // Controlando o valor da senha
-              onChangeText={setNewPassword} // Atualizando o estado da senha
+              value={newPassword}
+              onChangeText={setNewPassword}
             />
             <InputIconLeftAndRight
               label={<Text>Confirmar senha <Text style={{ color: "red" }}>*</Text></Text>}
@@ -82,28 +123,19 @@ export default function NewPasswordScreen() {
               iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}
               secureTextEntry={!isConfirmPasswordVisible}
               onIconRightPress={toggleConfirmPasswordVisibility}
-              value={confirmPassword} // Controlando o valor da confirmação da senha
-              onChangeText={setConfirmPassword} // Atualizando o estado da confirmação da senha
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
             />
           </Layout>
 
-          {/* Botão */}
           <Layout style={styles.buttonContainer}>
-            <ButtonGlobal
-              title="Salvar"
-              appeareances=""
-              onPress={() => {
-                // Lógica para verificar se as senhas coincidem
-                if (newPassword === confirmPassword) {
-                  navigation.navigate("Login"); // Navega para a tela de Login se as senhas coincidirem
-                } else {
-                  alert("As senhas não coincidem!"); // Mensagem de erro se as senhas não coincidirem
-                }
-              }}
-            />
+            <ButtonGlobal title="Salvar" appeareances="" onPress={handleSave} />
           </Layout>
         </Layout>
       </ScrollView>
+
+      {/* Colocando o Toast aqui diretamente */}
+      <Toast />
     </KeyboardAvoidingView>
   );
 }

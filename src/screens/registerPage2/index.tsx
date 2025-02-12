@@ -8,15 +8,17 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
+  Keyboard,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RoutesParams } from "../../navigation/routesParams";
 import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
+import InputIconLeftAndRight from "../../components/inputs/inputIconsLeftAndRight";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
-import { signUp } from "../../services/authService"; 
+import { signUp } from "../../services/authService";
 import { useRoute } from "@react-navigation/native";
+import Toast from "react-native-toast-message"; 
 
 type RegisterParamsList = NativeStackNavigationProp<RoutesParams, "Register2">;
 
@@ -37,35 +39,71 @@ export default function RegisterScreen2() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [checkedPrivacy, setCheckedPrivacy] = useState(false);
   const [checkedTerms, setCheckedTerms] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setIsConfirmPasswordVisible((prevState) => !prevState);
+  };
+
+  const showToast = (type: "success" | "error", message: string) => {
+    Toast.show({
+      type,
+      text1: message,
+      visibilityTime: 4000,
+    });
+  };
 
   const handleRegister = async () => {
+    Keyboard.dismiss();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!email || !password || !confirmPassword) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      showToast("error", "Por favor, preencha todos os campos obrigatórios.");
       return;
     }
-  
+
+    if (!emailRegex.test(email)) {
+      showToast("error", "E-mail inválido. Use um formato válido.");
+      return;
+    }
+
+    if (password.length < 6) {
+      showToast("error", "A senha deve ter pelo menos 6 caracteres.");
+      return;
+    }
+
     if (password !== confirmPassword) {
-      Alert.alert("Erro", "As senhas não coincidem.");
+      showToast("error", "As senhas não coincidem.");
       return;
     }
-  
+
     if (!checkedPrivacy || !checkedTerms) {
-      Alert.alert("Erro", "Você deve aceitar as políticas de privacidade e os termos de uso.");
+      showToast("error", "Você deve aceitar as políticas de privacidade e os termos de uso.");
       return;
     }
-  
+
     try {
       await signUp(email, password);
 
-      console.log("Usuário cadastrado com:", { fullName, cpfCnpj, birthDate, phone, email });
-  
-      Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
+      console.log("Usuário cadastrado com:", {
+        fullName,
+        cpfCnpj,
+        birthDate,
+        phone,
+        email,
+      });
+
+      showToast("success", "Cadastro realizado com sucesso!");
       navigation.navigate("Login");
     } catch (error: any) {
-      Alert.alert("Erro ao cadastrar", error.message);
+      showToast("error", error.message);
     }
   };
-  
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -114,11 +152,7 @@ export default function RegisterScreen2() {
             <Layout style={styles.form}>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label={
-                    <Text>
-                      E-mail <Text style={{ color: "red" }}>*</Text>
-                    </Text>
-                  }
+                  label={<Text>E-mail <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="ex. email@exemplo.com"
                   iconName="email-outline"
                   textColor={theme["text-basic-color"]}
@@ -127,34 +161,32 @@ export default function RegisterScreen2() {
                   keyboardType="email-address"
                 />
               </Layout>
+
               <Layout style={styles.inputWrapper}>
-                <InputGlobal
-                  label={
-                    <Text>
-                      Senha <Text style={{ color: "red" }}>*</Text>
-                    </Text>
-                  }
+                <InputIconLeftAndRight
+                  label={<Text>Senha <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="Digite sua senha"
-                  iconName="lock-outline"
+                  iconLeft="lock-outline"
+                  iconRight={isPasswordVisible ? "eye-off-outline" : "eye-outline"}
+                  secureTextEntry={!isPasswordVisible}
+                  onIconRightPress={togglePasswordVisibility}
                   textColor={theme["text-basic-color"]}
                   value={password}
                   onChangeText={setPassword}
-                  secureTextEntry
                 />
               </Layout>
+
               <Layout style={styles.inputWrapper}>
-                <InputGlobal
-                  label={
-                    <Text>
-                      Confirmar senha <Text style={{ color: "red" }}>*</Text>
-                    </Text>
-                  }
+                <InputIconLeftAndRight
+                  label={<Text>Confirmar senha <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="Confirme sua senha"
-                  iconName="lock-outline"
+                  iconLeft="lock-outline"
+                  iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}
+                  secureTextEntry={!isConfirmPasswordVisible}
+                  onIconRightPress={toggleConfirmPasswordVisibility}
                   textColor={theme["text-basic-color"]}
                   value={confirmPassword}
                   onChangeText={setConfirmPassword}
-                  secureTextEntry
                 />
               </Layout>
 
@@ -189,6 +221,7 @@ export default function RegisterScreen2() {
           </Layout>
         </ScrollView>
       </KeyboardAvoidingView>
+      <Toast /> {/* Coloque o Toast aqui no final do componente */}
     </SafeAreaView>
   );
 }
