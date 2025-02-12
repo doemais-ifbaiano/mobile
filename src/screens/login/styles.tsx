@@ -1,3 +1,4 @@
+import { CheckBox } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({

@@ -17,7 +17,7 @@ export default function AppNavigation() {
 
     useEffect(() => {
         checkUserSession((user) => {
-            setInitialRoute(user ? "Home" : "LandingPage");
+            setInitialRoute(user ? "HomePage" : "LandingPage");
         });
     }, []);
 

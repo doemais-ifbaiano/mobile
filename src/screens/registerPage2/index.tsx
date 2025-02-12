@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { RoutesParams } from "../../navigation/routesParams";
 import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
+import InputIconLeftAndRight from "../../components/inputs/inputIconsLeftAndRight";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
 import { signUp } from "../../services/authService"; 
 import { useRoute } from "@react-navigation/native";
@@ -37,10 +38,33 @@ export default function RegisterScreen2() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [checkedPrivacy, setCheckedPrivacy] = useState(false);
   const [checkedTerms, setCheckedTerms] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(prevState => !prevState);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setIsConfirmPasswordVisible(prevState => !prevState);
+  };
 
   const handleRegister = async () => {
+    // Regex para validar o e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
     if (!email || !password || !confirmPassword) {
       Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+  
+    if (!emailRegex.test(email)) {
+      Alert.alert("Erro", "E-mail inválido. Use um formato válido.");
+      return;
+    }
+  
+    if (password.length < 6) {
+      Alert.alert("Erro", "A senha deve ter pelo menos 6 caracteres.");
       return;
     }
   
@@ -56,7 +80,7 @@ export default function RegisterScreen2() {
   
     try {
       await signUp(email, password);
-
+  
       console.log("Usuário cadastrado com:", { fullName, cpfCnpj, birthDate, phone, email });
   
       Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
@@ -65,7 +89,6 @@ export default function RegisterScreen2() {
       Alert.alert("Erro ao cadastrar", error.message);
     }
   };
-  
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -114,11 +137,7 @@ export default function RegisterScreen2() {
             <Layout style={styles.form}>
               <Layout style={styles.inputWrapper}>
                 <InputGlobal
-                  label={
-                    <Text>
-                      E-mail <Text style={{ color: "red" }}>*</Text>
-                    </Text>
-                  }
+                  label={<Text>E-mail <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="ex. email@exemplo.com"
                   iconName="email-outline"
                   textColor={theme["text-basic-color"]}
@@ -127,34 +146,32 @@ export default function RegisterScreen2() {
                   keyboardType="email-address"
                 />
               </Layout>
+
               <Layout style={styles.inputWrapper}>
-                <InputGlobal
-                  label={
-                    <Text>
-                      Senha <Text style={{ color: "red" }}>*</Text>
-                    </Text>
-                  }
+                <InputIconLeftAndRight
+                  label={<Text>Senha <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="Digite sua senha"
-                  iconName="lock-outline"
+                  iconLeft="lock-outline"
+                  iconRight={isPasswordVisible ? "eye-off-outline" : "eye-outline"}
+                  secureTextEntry={!isPasswordVisible}
+                  onIconRightPress={togglePasswordVisibility}
                   textColor={theme["text-basic-color"]}
                   value={password}
                   onChangeText={setPassword}
-                  secureTextEntry
                 />
               </Layout>
+
               <Layout style={styles.inputWrapper}>
-                <InputGlobal
-                  label={
-                    <Text>
-                      Confirmar senha <Text style={{ color: "red" }}>*</Text>
-                    </Text>
-                  }
+                <InputIconLeftAndRight
+                  label={<Text>Confirmar senha <Text style={{ color: "red" }}>*</Text></Text>}
                   placeholder="Confirme sua senha"
-                  iconName="lock-outline"
+                  iconLeft="lock-outline"
+                  iconRight={isConfirmPasswordVisible ? "eye-off-outline" : "eye-outline"}
+                  secureTextEntry={!isConfirmPasswordVisible}
+                  onIconRightPress={toggleConfirmPasswordVisibility}
                   textColor={theme["text-basic-color"]}
                   value={confirmPassword}
                   onChangeText={setConfirmPassword}
-                  secureTextEntry
                 />
               </Layout>
 
