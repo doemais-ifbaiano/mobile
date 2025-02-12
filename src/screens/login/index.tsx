@@ -7,7 +7,8 @@ import {
   Platform, 
   ScrollView, 
   View, 
-  Alert 
+  Alert, 
+  Keyboard 
 } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
@@ -50,6 +51,7 @@ export default function LoginScreen() {
 
   // Função de login
   const handleLogin = async () => {
+    Keyboard.dismiss(); 
     if (!email || !password) {
       Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
       return;

@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text, useTheme, Icon } from "@ui-kitten/components";
-import React, { useState } from "react"; // Importação do useState
+import React, { useState } from "react"; 
 import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Keyboard, Alert } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";

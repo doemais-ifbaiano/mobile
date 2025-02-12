@@ -9,13 +9,13 @@ import {
   Platform,
   ScrollView,
   Alert,
+  Keyboard
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RoutesParams } from "../../navigation/routesParams";
 import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
-import { signUp } from "../../services/authService";
 import { maskCpfCnpj, maskDate, maskPhone } from "../../utils/masks";
 
 type RegisterParamsList = NativeStackNavigationProp<RoutesParams, "Register1">;
@@ -30,6 +30,7 @@ export default function RegisterScreen() {
   const [phone, setPhone] = useState("");
 
   const handleNext = () => {
+    Keyboard.dismiss(); 
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
     const cpfCnpjRegex = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})$/;
     const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
@@ -67,8 +68,6 @@ export default function RegisterScreen() {
       phone,
     });
   };
-  
-  
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -99,8 +98,12 @@ export default function RegisterScreen() {
                 source={require("../../../assets/logos/logo-grande.png")}
                 style={styles.logo}
               />
-              <Text category="h4" style={[styles.title, { color: theme["text-basic-color"] }]}>Cadastrar usuário</Text>
-              <Text category="s1" style={[styles.subtitle, { color: theme["text-subtitle-color"] }]}>Informe seus dados pessoais</Text>
+              <Text category="h4" style={[styles.title, { color: theme["text-basic-color"] }]}>
+                Cadastrar usuário
+              </Text>
+              <Text category="s1" style={[styles.subtitle, { color: theme["text-subtitle-color"] }]}>
+                Informe seus dados pessoais
+              </Text>
             </Layout>
 
             {/* Formulário */}

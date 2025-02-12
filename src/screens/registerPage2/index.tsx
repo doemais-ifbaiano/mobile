@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
   Alert,
+  Keyboard
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RoutesParams } from "../../navigation/routesParams";
@@ -50,7 +51,7 @@ export default function RegisterScreen2() {
   };
 
   const handleRegister = async () => {
-    // Regex para validar o e-mail
+    Keyboard.dismiss(); 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
     if (!email || !password || !confirmPassword) {
