@@ -1,12 +1,13 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text, useTheme, Icon } from "@ui-kitten/components";
 import React, { useState } from "react";
-import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert, Keyboard } from "react-native";
+import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Keyboard } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
 import styles from "./styles";
 import InputIconLeftAndRight from "../../components/inputs/inputIconsLeftAndRight";
+import Toast from 'react-native-toast-message';
 
 type NewPasswordParamsList = NativeStackNavigationProp<RoutesParams, "NewPassword">;
 
@@ -29,22 +30,52 @@ export default function NewPasswordScreen() {
 
   const handleSave = () => {
     Keyboard.dismiss();
+
     if (!newPassword.trim() || !confirmPassword.trim()) {
-      Alert.alert("Erro", "Os campos não podem estar vazios!");
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'Os campos não podem estar vazios!',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       return;
     }
 
     if (newPassword.length < 6) {
-      Alert.alert("Erro", "A senha deve ter no mínimo 6 caracteres!");
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'A senha deve ter no mínimo 6 caracteres!',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      Alert.alert("Erro", "As senhas não coincidem!");
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'As senhas não coincidem!',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       return;
     }
 
     navigation.navigate("Login");
+    Toast.show({
+      type: 'success',
+      position: 'top',
+      text1: 'Senha alterada!',
+      text2: 'Sua senha foi alterada com sucesso.',
+      visibilityTime: 3000,
+      autoHide: true,
+    });
   };
 
   return (
@@ -102,6 +133,9 @@ export default function NewPasswordScreen() {
           </Layout>
         </Layout>
       </ScrollView>
+
+      {/* Colocando o Toast aqui diretamente */}
+      <Toast />
     </KeyboardAvoidingView>
   );
 }

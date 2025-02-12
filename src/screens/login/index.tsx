@@ -7,8 +7,7 @@ import {
   Platform, 
   ScrollView, 
   View, 
-  Alert, 
-  Keyboard 
+  Keyboard
 } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
@@ -20,6 +19,7 @@ import ButtonEnterGoogle from "../../components/buttons/buttonEnterGoogle";
 import { auth } from "../../firebaseConfig";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from 'react-native-toast-message'; // Importando o Toast externo
 
 type LoginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
 
@@ -30,7 +30,6 @@ export default function LoginScreen() {
   const [password, setPassword] = useState(""); 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  // Verificar se o usuário já está logado ao abrir o app
   useEffect(() => {
     const checkLoginStatus = async () => {
       const keepLoggedIn = await AsyncStorage.getItem("keepLoggedIn");
@@ -49,11 +48,17 @@ export default function LoginScreen() {
     setIsPasswordVisible(prevState => !prevState);
   };
 
-  // Função de login
   const handleLogin = async () => {
     Keyboard.dismiss(); 
     if (!email || !password) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'Preencha todos os campos obrigatórios.',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       return;
     }
 
@@ -64,10 +69,16 @@ export default function LoginScreen() {
       } else {
         await AsyncStorage.removeItem("keepLoggedIn"); 
       }
-
       navigation.replace("HomePage");
     } catch (error) {
-      Alert.alert("Erro", "Credenciais inválidas ou erro ao autenticar.");
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'Credenciais inválidas ou erro ao autenticar.',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       console.error("Erro no login:", error);
     }
   };
@@ -79,12 +90,10 @@ export default function LoginScreen() {
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         <Layout style={styles.container}>
-          {/* Logo */}
           <Layout style={styles.logo}>
             <Image source={require("../../../assets/logos/logo-media.png")} />
           </Layout>
 
-          {/* Caixa de textos */}
           <Layout style={styles.box}>
             <Text category="h1" style={styles.title}>
               Login
@@ -121,7 +130,6 @@ export default function LoginScreen() {
             </Layout>
           </Layout>
           
-          {/* Botões */}
           <Layout style={styles.buttonContainer}>
             <ButtonGlobal title="Entrar" appeareances="" onPress={handleLogin} />
             <ButtonEnterGoogle />
@@ -134,6 +142,9 @@ export default function LoginScreen() {
           </Layout>
         </Layout>
       </ScrollView>
+
+      {/* Colocando o Toast aqui diretamente */}
+      <Toast />
     </KeyboardAvoidingView>
   );
 }

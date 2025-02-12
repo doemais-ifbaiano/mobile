@@ -8,10 +8,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
   Keyboard
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message"; 
 import { RoutesParams } from "../../navigation/routesParams";
 import { styles } from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
@@ -37,27 +37,52 @@ export default function RegisterScreen() {
     const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
   
     if (!fullName || !cpfCnpj || !birthDate || !phone) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Por favor, preencha todos os campos obrigatórios.",
+      });
       return;
     }
   
     if (!nameRegex.test(fullName)) {
-      Alert.alert("Erro", "Nome inválido. Use apenas letras e espaços.");
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Nome inválido. Use apenas letras e espaços.",
+      });
       return;
     }
   
     if (!cpfCnpjRegex.test(cpfCnpj)) {
-      Alert.alert("Erro", "CPF ou CNPJ inválido. Verifique o formato.");
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "CPF ou CNPJ inválido. Verifique o formato.",
+      });
       return;
     }
   
     if (!dateRegex.test(birthDate)) {
-      Alert.alert("Erro", "Data de nascimento inválida. Use o formato DD/MM/AAAA.");
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Data de nascimento inválida. Use o formato DD/MM/AAAA.",
+      });
       return;
     }
   
     if (!phoneRegex.test(phone)) {
-      Alert.alert("Erro", "Número de telefone inválido. Use o formato (99) 99999-9999.");
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Número de telefone inválido. Use o formato (99) 99999-9999.",
+      });
       return;
     }
   
@@ -157,6 +182,9 @@ export default function RegisterScreen() {
           </Layout>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      {/* Toast component */}
+      <Toast />
     </SafeAreaView>
   );
 }

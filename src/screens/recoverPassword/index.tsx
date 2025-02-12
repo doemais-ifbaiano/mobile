@@ -1,12 +1,13 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text, useTheme, Icon } from "@ui-kitten/components";
 import React, { useState } from "react"; 
-import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Keyboard, Alert } from "react-native";
+import { Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Keyboard } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
 import styles from "./styles";
 import InputGlobal from "../../components/inputs/inputGlobal";
+import Toast from 'react-native-toast-message'; 
 
 type RecoverPasswordParamsList = NativeStackNavigationProp<RoutesParams, "RecoverPassword">;
 
@@ -24,8 +25,23 @@ export default function RecoverPasswordScreen() {
     if (isValidEmail(email)) {
       Keyboard.dismiss();
       navigation.navigate("NewPassword");
+      Toast.show({
+        type: 'success',
+        position: 'top',
+        text1: 'E-mail enviado!',
+        text2: 'Um link para recuperação foi enviado para o seu e-mail.',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     } else {
-      Alert.alert("Erro", "Por favor, insira um e-mail válido.");
+      Toast.show({
+        type: 'error',
+        position: 'top',
+        text1: 'Erro!',
+        text2: 'Por favor, insira um e-mail válido.',
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 
@@ -42,7 +58,7 @@ export default function RecoverPasswordScreen() {
           >
             <Icon
               name="arrow-back"
-              fill={theme["black"]}
+              fill={theme["black"]} 
               style={{ width: 30, height: 30 }}
             />
           </TouchableOpacity>
@@ -84,6 +100,7 @@ export default function RecoverPasswordScreen() {
           </Layout>
         </Layout>
       </ScrollView>
+      <Toast />
     </KeyboardAvoidingView>
   );
 }
