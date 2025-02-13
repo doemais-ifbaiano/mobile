@@ -14,6 +14,7 @@ export default function ProfileScreen() {
   return (
     <Layout style={styles.container}>
         <HeaderMenu/>
+        <Text style={styles.meuPerfilText}>Meu Perfil</Text>
     </Layout>
   );
 }

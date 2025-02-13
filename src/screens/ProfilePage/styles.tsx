@@ -5,6 +5,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
+  meuPerfilText: {
+    width: "50%",
+    fontSize: 18, 
+    fontWeight: "bold",
+    borderWidth: 2,
+    textAlign: "center"
+  }
 });
 
 export default styles;

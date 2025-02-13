@@ -48,7 +48,7 @@ export default function HomePageScreen() {
 
         <Layout style={styles.box}>
             <Text category="h1" style={styles.title}>
-                Instituições Parceiras
+              Instituições Parceiras
             </Text>
         </Layout>
         
