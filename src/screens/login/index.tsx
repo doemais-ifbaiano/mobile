@@ -131,8 +131,10 @@ export default function LoginScreen() {
           </Layout>
           
           <Layout style={styles.buttonContainer}>
+
             <ButtonGlobal title="Entrar" appeareances="" onPress={handleLogin} />
             <ButtonEnterGoogle />
+
             <View style={styles.divider}></View>
             <ButtonGlobal
               title="Cadastrar-me"
