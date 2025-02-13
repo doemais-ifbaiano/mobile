@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     color: "#A037FC",
     borderColor: "#A037FC",
     lineHeight: 40,
+  },
+  containerFoto: {
+
   }
 });
 
