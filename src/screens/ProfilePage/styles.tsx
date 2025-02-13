@@ -6,11 +6,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   meuPerfilText: {
-    width: "50%",
-    fontSize: 18, 
+    marginTop: 15,
+    width: "74%",
+    height: "5%",
+    fontSize: 24, 
     fontWeight: "bold",
     borderWidth: 2,
-    textAlign: "center"
+    textAlign: "center",
+    alignSelf: "center",
+    color: "#A037FC",
+    borderColor: "#A037FC",
+    lineHeight: 40,
   }
 });
 
