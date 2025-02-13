@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputs: {
-    width: "90%",
+    width: "87.5%",
     marginBottom: "5%", 
   },
   buttonContainer: {

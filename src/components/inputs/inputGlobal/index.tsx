@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Input, Text, Icon } from "@ui-kitten/components";
+import { Input, Icon } from "@ui-kitten/components";
 import { View } from "react-native";
 import { styles } from "./styles";
 
@@ -9,6 +9,9 @@ interface InputGlobalProps {
   secureTextEntry?: boolean;
   textColor?: string;
   iconName?: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  keyboardType?: "default" | "email-address" | "numeric" | "phone-pad"; 
 }
 
 export default function InputGlobal({
@@ -17,6 +20,9 @@ export default function InputGlobal({
   secureTextEntry = false,
   textColor,
   iconName,
+  value,
+  onChangeText,
+  keyboardType = "default", 
 }: InputGlobalProps) {
 
   const renderIcon = (props: any) => (
@@ -35,6 +41,9 @@ export default function InputGlobal({
         secureTextEntry={secureTextEntry}
         placeholderTextColor={textColor}
         accessoryLeft={iconName ? renderIcon : undefined}
+        value={value}
+        onChangeText={onChangeText}
+        keyboardType={keyboardType} 
       />
     </View>
   );
