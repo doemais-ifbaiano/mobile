@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   
   input: {
-    width: 309,
+    width: "100%",
     height: 35,
     paddingTop: 8.29, 
     paddingLeft: 0,

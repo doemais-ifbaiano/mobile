@@ -114,7 +114,6 @@ export default function HomePageScreen() {
             </Layout>
           ))}
         </Layout>
-      
     </Layout>
   );
 }

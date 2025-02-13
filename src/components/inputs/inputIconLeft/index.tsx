@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Input, Text, IconElement, Icon } from "@ui-kitten/components";
+import { Input, Icon, IconElement } from "@ui-kitten/components";
 import { styles } from "./styles";
 
 interface InputGlobalProps {
@@ -8,6 +8,8 @@ interface InputGlobalProps {
   secureTextEntry?: boolean;
   textColor?: string;
   iconName?: string;
+  value: string; 
+  onChangeText: (text: string) => void; 
 }
 
 export default function InputIconLeft({
@@ -16,12 +18,14 @@ export default function InputIconLeft({
   secureTextEntry = false,
   textColor,
   iconName,
+  value,
+  onChangeText,
 }: InputGlobalProps) {
 
   const icon = (props: any): IconElement => (
     <Icon
       {...props}
-      name={iconName || "home"}
+      name={iconName || "home"} 
       fill="#ACACAC"
     />
   );
@@ -38,6 +42,8 @@ export default function InputIconLeft({
         secureTextEntry={secureTextEntry}
         placeholderTextColor={textColor}
         accessoryLeft={icon}
+        value={value}
+        onChangeText={onChangeText} 
       />
     </>
   );

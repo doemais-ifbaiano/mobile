@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Input, Text, IconElement, Icon } from "@ui-kitten/components";
+import { Input, Icon, IconElement } from "@ui-kitten/components";
 import { styles } from "./styles";
 
 interface InputGlobalProps {
@@ -10,6 +10,8 @@ interface InputGlobalProps {
   iconLeft?: string;
   iconRight?: string;
   onIconRightPress?: () => void;
+  value: string; 
+  onChangeText: (text: string) => void; 
 }
 
 export default function InputIconLeftAndRight({
@@ -20,6 +22,8 @@ export default function InputIconLeftAndRight({
   iconLeft,
   iconRight,
   onIconRightPress,
+  value,
+  onChangeText,
 }: InputGlobalProps) {
 
   const left = (props: any): IconElement => (
@@ -57,6 +61,8 @@ export default function InputIconLeftAndRight({
             onPress={onIconRightPress}
           />
         )}
+        value={value} 
+        onChangeText={onChangeText}
       />
     </>
   );
