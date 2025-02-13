@@ -12,4 +12,5 @@ export type RoutesParams = {
     RecoverPassword: undefined;
     NewPassword: undefined;
     HomePage: undefined;
+    Profile: undefined;
 };
