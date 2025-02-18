@@ -89,7 +89,7 @@ export default function HomePageScreen() {
               <Text style={styles.cardDescription}>
                 {institution.name}
               </Text>
-              <Button style={styles.cardButton}>
+              <Button style={styles.cardButton} onPress={() => navigation.navigate("Apae")}>
                 Veja Mais
               </Button>
             </Layout>

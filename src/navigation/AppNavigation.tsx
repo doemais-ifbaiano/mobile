@@ -9,6 +9,7 @@ import RecoverPasswordScreen from "../screens/recoverPassword";
 import NewPasswordScreen from "../screens/newPassword";
 import HomePageScreen from "../screens/HomePage";
 import ProfileScreen from "../screens/ProfilePage";
+import ApaeScreen from "../screens/ApaeDoacao";
 import { checkUserSession } from "../services/authService";
 
 const Stack = createNativeStackNavigator();
@@ -35,6 +36,7 @@ export default function AppNavigation() {
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
                 <Stack.Screen name="HomePage" component={HomePageScreen} /> 
                 <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="Apae" component={ApaeScreen} />
 
             </Stack.Navigator>
         </NavigationContainer>
