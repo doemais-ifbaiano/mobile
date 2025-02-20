@@ -13,5 +13,7 @@ export type RoutesParams = {
     NewPassword: undefined;
     HomePage: undefined;
     Profile: undefined;
-    Apae: undefined;
+    InstitutionPage: undefined;
+    FinancialDonation: undefined;
+    MaterialDonation: undefined;
 };
