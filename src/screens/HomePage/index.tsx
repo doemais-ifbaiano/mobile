@@ -63,18 +63,37 @@ export default function HomePageScreen() {
             accessoryRight={(props) => (
               <Icon {...props} name={visible ? "chevron-up" : "chevron-down"} 
               style={{ width: 20, height: 24 }} />
-            )}
-          >
-            {selectedOption}
-          </Button>
-        )}
-        onBackdropPress={() => setVisible(false)}
-      >
-        <Layout style={{ padding: 10, borderRadius: 8 }}>
-          {["Opção 1", "Opção 2", "Opção 3"].map((option, index) => (
-            <TouchableOpacity key={index} onPress={() => handleSelectOption(option)}>
-              <Text>{option}</Text>
-            </TouchableOpacity>
+            )}>
+              {selectedOption}
+            </Button>
+          )}
+          onBackdropPress={() => setVisible(false)}
+        >
+          <Layout style={{ padding: 10, borderRadius: 8 }}>
+            {["Opção 1", "Opção 2", "Opção 3"].map((option, index) => (
+              <TouchableOpacity key={index} onPress={() => handleSelectOption(option)}>
+                <Text>{option}</Text>
+              </TouchableOpacity>
+            ))}
+          </Layout>
+        </Popover>
+
+        {/* Cards de Instituições */}
+        <Layout style={styles.cardsContainer}>
+          {institutions.map((institution) => (
+            <Layout key={institution.id} style={styles.card}>
+              <Image 
+                source={institution.image} 
+                style={styles.cardImage} 
+                resizeMode="cover"
+              />
+              <Text style={styles.cardDescription}>
+                {institution.name}
+              </Text>
+              <Button style={styles.cardButton} onPress={() => navigation.navigate("Apae")}>
+                Veja Mais
+              </Button>
+            </Layout>
           ))}
         </Layout>
       </Popover>
