@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "doe+ beta",
-    "slug": "doemais",
+    "slug": "doe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logos/logo-media.png",
@@ -35,7 +35,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "079a6525-beee-4957-8c55-6afb0bde966b"
+        "projectId": "7f37271e-b788-450c-949b-2588d3b691a5"
       },
       "expoPublicFirebaseApiKey": "AIzaSyCVDdcsN5w6lmn8K_Qyw4aggt7pwSu070c",
       "expoPublicFirebaseAuthDomain": "doe-mais-8892d.firebaseapp.com",
@@ -47,6 +47,6 @@
       "androidClientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com",
       "iosClientId": "175852613799-m196gmjk99lpif0b2ojdm4uf0p0s4ttf.apps.googleusercontent.com"
     },
-    "owner": "r1yck"
+    "owner": "g_oliverr"
   }
 }
