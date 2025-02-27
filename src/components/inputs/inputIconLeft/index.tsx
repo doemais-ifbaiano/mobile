@@ -4,38 +4,36 @@ import { styles } from "./styles";
 
 interface InputGlobalProps {
   label: ReactNode;
-  placeholder: string;
+  placeholder?: string;
   secureTextEntry?: boolean;
   textColor?: string;
   iconName?: string;
-  value: string; 
-  onChangeText: (text: string) => void; 
+  value: string;
+  onChangeText?: (text: string) => void;
+  editable?: boolean; // Adicionado para permitir inputs desativados
 }
 
 export default function InputIconLeft({
   label,
-  placeholder,
+  placeholder = "",
   secureTextEntry = false,
   textColor,
   iconName,
   value,
   onChangeText,
+  editable = true,
 }: InputGlobalProps) {
-
   const icon = (props: any): IconElement => (
     <Icon
       {...props}
-      name={iconName || "home"} 
+      name={iconName || "home"}
       fill="#ACACAC"
     />
   );
 
   return (
     <>
-      {/* Título (Label) */}
       {label}
-
-      {/* Input */}
       <Input
         style={styles.input}
         placeholder={placeholder}
@@ -43,7 +41,8 @@ export default function InputIconLeft({
         placeholderTextColor={textColor}
         accessoryLeft={icon}
         value={value}
-        onChangeText={onChangeText} 
+        onChangeText={onChangeText}
+        editable={editable} // Agora suporta inputs desativados corretamente
       />
     </>
   );

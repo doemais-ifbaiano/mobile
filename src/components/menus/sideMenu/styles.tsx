@@ -2,10 +2,18 @@ import { StyleSheet } from "react-native";
 import theme from "../../../../theme.json";
 
 const styles = StyleSheet.create({
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.4)", // Fundo escuro semi-transparente
+  },
   container: {
     position: "absolute",
     left: 0,
-    height: "100%", // Ajuste a altura para ocupar toda a tela
+    height: "100%",
     width: "50%",
     backgroundColor: theme["color-primary-500"],
     shadowColor: "#000",

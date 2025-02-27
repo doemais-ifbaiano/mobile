@@ -4,13 +4,11 @@ import {
   signOut, 
   onAuthStateChanged, 
   GoogleAuthProvider, 
-  signInWithCredential
+  signInWithCredential 
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FirebaseAuthError } from "./firebaseErrors";
-import * as Google from "expo-auth-session/providers/google";
-import Constants from "expo-constants";
 
 // Registrar usuário com e-mail e senha
 export const signUp = async (email: string, password: string) => {
@@ -44,19 +42,23 @@ export const signInWithGoogle = async (response: any) => {
   try {
     if (response?.type === "success") {
       const { id_token } = response.authentication;
-
       if (id_token) {
         const credential = GoogleAuthProvider.credential(id_token);
         const userCredential = await signInWithCredential(auth, credential);
         return userCredential.user;
       } else {
-        throw new Error('Erro: idToken não encontrado.');
+        throw new Error("Erro: idToken não encontrado.");
       }
     }
   } catch (error) {
     console.error("Erro no login com Google:", error);
     throw error;
   }
+};
+
+// Obtém o usuário logado atualmente
+export const getCurrentUser = () => {
+  return auth.currentUser;
 };
 
 // Verifica se o usuário deve permanecer logado
@@ -78,7 +80,7 @@ export const checkUserSession = async (callback: (user: any) => void) => {
 // Logout
 export const logout = async () => {
   try {
-    await AsyncStorage.removeItem("keepLoggedIn"); 
+    await AsyncStorage.removeItem("keepLoggedIn");
     await signOut(auth);
   } catch (error) {
     console.error("Erro ao sair:", error);

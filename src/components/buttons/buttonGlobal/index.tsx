@@ -5,17 +5,15 @@ import styles from "./styles";
 
 interface ButtonGlobalProps {
   title: string;
-  appeareances: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
-  textColor?: string; // Adicionando a opção para personalizar a cor do texto
+  textColor?: string;
 }
 
-export default function ButtonGlobal({ title, onPress, appeareances, style, textColor }: ButtonGlobalProps) {
+export default function ButtonGlobal({ title, onPress, style, textColor = "#FFF" }: ButtonGlobalProps) {
   return (
-    <Button style={[styles.button, style]} onPress={onPress} appearance={appeareances}>
-      {() => <Text style={{ color: textColor, fontWeight: "bold" }}>{title}</Text>} 
-      {/* Envolvendo o texto em um <Text> estilizado */}
+    <Button style={[styles.button, style]} onPress={onPress}>
+      {() => <Text style={{ color: textColor, fontWeight: "bold" }}>{title}</Text>}
     </Button>
   );
 }
