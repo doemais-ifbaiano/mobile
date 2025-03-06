@@ -29,10 +29,40 @@ export default function RegisterScreen() {
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
 
+  function isValidCPF(cpf: string): boolean {
+    cpf = cpf.replace(/[^\d]+/g, '');
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+      return false;
+    }
+    let sum = 0;
+    let remainder;
+    for (let i = 1; i <= 9; i++) {
+      sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+    }
+    remainder = (sum * 10) % 11;
+    if (remainder === 10 || remainder === 11) {
+      remainder = 0;
+    }
+    if (remainder !== parseInt(cpf.substring(9, 10))) {
+      return false;
+    }
+    sum = 0;
+    for (let i = 1; i <= 10; i++) {
+      sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+    }
+    remainder = (sum * 10) % 11;
+    if (remainder === 10 || remainder === 11) {
+      remainder = 0;
+    }
+    if (remainder !== parseInt(cpf.substring(10, 11))) {
+      return false;
+    }
+    return true;
+  }
+
   const handleNext = () => {
     Keyboard.dismiss(); 
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
-    const cpfCnpjRegex = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})$/;
     const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
     const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
   
@@ -56,12 +86,12 @@ export default function RegisterScreen() {
       return;
     }
   
-    if (!cpfCnpjRegex.test(cpfCnpj)) {
+    if (!isValidCPF(cpfCnpj)) {
       Toast.show({
         type: "error",
         position: "top",
         text1: "Erro",
-        text2: "CPF ou CNPJ inválido. Verifique o formato.",
+        text2: "CPF inválido. Verifique o formato.",
       });
       return;
     }
