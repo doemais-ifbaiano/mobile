@@ -132,13 +132,12 @@ export default function LoginScreen() {
           
           <Layout style={styles.buttonContainer}>
 
-            <ButtonGlobal title="Entrar" appeareances="" onPress={handleLogin} />
+            <ButtonGlobal title="Entrar" onPress={handleLogin} />
             <ButtonEnterGoogle />
 
             <View style={styles.divider}></View>
             <ButtonGlobal
               title="Cadastrar-me"
-              appeareances=""
               onPress={() => navigation.navigate("Register1")}
             />
           </Layout>

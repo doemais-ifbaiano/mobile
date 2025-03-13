@@ -1,15 +1,18 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Layout, Text } from "@ui-kitten/components";
 import React from "react";
-import { ScrollView, Image } from "react-native";
+import { View, ScrollView, Image, TouchableOpacity, Text as RNText, Linking } from "react-native";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import HeaderMenu from "../../components/menus/headerMenu";
 import styles from "./styles";
-import { TouchableOpacity, Text as RNText } from "react-native";
 
-export default function InstitutionPage() {
-    const navigation = useNavigation<NativeStackNavigationProp<RoutesParams, "InstitutionPage">>();
+export default function InstitutionPage1() {
+    const navigation = useNavigation<NativeStackNavigationProp<RoutesParams, "InstitutionPage1">>();
+
+    const handleFinancialDonation = () => {
+        Linking.openURL("https://link.mercadopago.com.br/doemaisteste");
+    };
 
     return (
         <Layout style={styles.container}>
@@ -36,10 +39,15 @@ export default function InstitutionPage() {
                 </Layout>
 
                 <Layout style={styles.imageGallery}>
-                    <Image source={require("../../../assets/logos/apae.png")} style={styles.image} />
-                    <Image source={require("../../../assets/logos/apae.png")} style={styles.image} />
-                    <Image source={require("../../../assets/logos/apae.png")} style={styles.image} />
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        <Image source={require("../../../assets/gallery/apae_g1.png")} style={styles.image} />
+                        <Image source={require("../../../assets/gallery/apae_g2.png")} style={styles.image} />
+                        <Image source={require("../../../assets/gallery/apae_g3.png")} style={styles.image} />
+                        <Image source={require("../../../assets/gallery/apae_g4.png")} style={styles.image} />
+                        <Image source={require("../../../assets/gallery/apae_g5.png")} style={styles.image} />
+                    </ScrollView>
                 </Layout>
+
 
                 <Layout style={styles.contentSection}>
                     <Text category="h2" style={styles.subtitle}>
@@ -52,6 +60,8 @@ export default function InstitutionPage() {
                     </Text>
                 </Layout>
 
+                <View style={styles.separator} />
+
                 <Layout style={styles.donationSection}>
                     <Text category="h2" style={styles.subtitle}>
                         Sua doação transforma vidas!
@@ -62,15 +72,14 @@ export default function InstitutionPage() {
                         todos!
                     </Text>
                     <Layout style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.donationButton} onPress={() => navigation.navigate("FinancialDonation")}>
+                        {/* Redireciona para o Mercado Pago */}
+                        <TouchableOpacity style={styles.donationButton} onPress={handleFinancialDonation}>
                             <RNText style={styles.buttonText}>Doação Financeira</RNText>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.donationButton} onPress={() => navigation.navigate("MaterialDonation")}>
                             <RNText style={styles.buttonText}>Doação Material</RNText>
                         </TouchableOpacity>
-
-
                     </Layout>
                 </Layout>
             </ScrollView>

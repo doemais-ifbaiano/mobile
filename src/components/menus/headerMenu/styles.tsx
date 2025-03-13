@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   shadowOverlay: {
     width: "100%",
-    height: 30,
+    height: 20,
     position: "absolute",
     top: 80,
     left: 0,

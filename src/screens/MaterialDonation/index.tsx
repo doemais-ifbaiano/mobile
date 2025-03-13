@@ -4,6 +4,7 @@ import { Layout } from "@ui-kitten/components";
 import HeaderMenu from "../../components/menus/headerMenu";
 import ItemSelectionBox from "../../components/ItemSelectionBox/page";
 import ButtonGlobal from "../../components/buttons/buttonGlobal";
+import * as MailComposer from "expo-mail-composer"; 
 import styles from "./styles";
 
 export default function MaterialDonation() {
@@ -13,6 +14,40 @@ export default function MaterialDonation() {
     // Atualiza os itens selecionados
     const handleItemSelection = (items: Record<string, number>) => {
         setSelectedItems(items);
+    };
+
+    // Função para montar e enviar o e-mail
+    const sendEmail = async () => {
+        const selected = Object.entries(selectedItems)
+            .filter(([_, quantity]) => quantity > 0)
+            .map(([item, quantity]) => `• ${item} (${quantity})`)
+            .join("\n");
+
+        const address = `
+            Travessa Snows, Bairro Nogueira, nº 30 - 45800-000
+            Telefone: (77) 99090-0909
+            E-mail: Apae@gmail.com
+        `;
+
+        const body = `
+Olá, gostaria de confirmar a doação dos seguintes materiais:\n\n
+${selected}
+
+Por favor, me informe se está tudo certo para o envio no seguinte endereço:.\n
+${address}
+Obrigado!\n
+        `;
+
+        const isAvailable = await MailComposer.isAvailableAsync();
+        if (isAvailable) {
+            await MailComposer.composeAsync({
+                recipients: ["Apae@gmail.com"],
+                subject: "Confirmação de Doação de Materiais",
+                body: body,
+            });
+        } else {
+            alert("O dispositivo não suporta envio de e-mails.");
+        }
     };
 
     const handleConfirm = () => {
@@ -27,7 +62,7 @@ export default function MaterialDonation() {
             <HeaderMenu />
 
             {/* Botão Confirmar no topo */}
-            <ButtonGlobal appeareances="" title="Confirmar" onPress={handleConfirm} />
+            <ButtonGlobal title="Confirmar" onPress={handleConfirm} />
 
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <Text style={styles.title}>Doação Material</Text>
@@ -43,9 +78,7 @@ export default function MaterialDonation() {
                     onItemChange={(updatedItems) =>
                         setSelectedItems((prev) => ({
                             ...prev,
-                            ...Object.fromEntries(
-                                Object.entries(updatedItems).map(([key, value]) => [key, value])
-                            )
+                            ...Object.fromEntries(Object.entries(updatedItems).map(([key, value]) => [key, value]))
                         }))
                     }
                 />
@@ -56,9 +89,7 @@ export default function MaterialDonation() {
                     onItemChange={(updatedItems) =>
                         setSelectedItems((prev) => ({
                             ...prev,
-                            ...Object.fromEntries(
-                                Object.entries(updatedItems).map(([key, value]) => [key, value])
-                            )
+                            ...Object.fromEntries(Object.entries(updatedItems).map(([key, value]) => [key, value]))
                         }))
                     }
                 />
@@ -69,13 +100,10 @@ export default function MaterialDonation() {
                     onItemChange={(updatedItems) =>
                         setSelectedItems((prev) => ({
                             ...prev,
-                            ...Object.fromEntries(
-                                Object.entries(updatedItems).map(([key, value]) => [key, value])
-                            )
+                            ...Object.fromEntries(Object.entries(updatedItems).map(([key, value]) => [key, value]))
                         }))
                     }
                 />
-
             </ScrollView>
 
             {/* Modal de Confirmação */}
@@ -106,7 +134,7 @@ export default function MaterialDonation() {
                             <TouchableOpacity style={styles.modalButtonAdd} onPress={() => setModalVisible(false)}>
                                 <Text style={styles.modalButtonTextAdd}>Adicionar Itens</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.modalButtonConfirm} onPress={() => console.log("Doação Confirmada")}>
+                            <TouchableOpacity style={styles.modalButtonConfirm} onPress={sendEmail}>
                                 <Text style={styles.modalButtonText}>Confirmar</Text>
                             </TouchableOpacity>
                         </View>

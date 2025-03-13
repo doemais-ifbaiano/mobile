@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -15,7 +15,7 @@ interface User {
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true); // Novo estado para controle de carregamento
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -27,17 +27,25 @@ export function useAuth() {
         let cpf = "";
         let birthDate = "";
 
-        // Buscar dados adicionais no Firestore
-        const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          console.log("Dados do Firestore:", userData); // Log dos dados do Firestore
-          name = userData.name || name;
-          phone = userData.phone || "";
-          cpf = userData.cpf || "";
-          birthDate = userData.birthDate || "";
-        } else {
-          console.log("Documento do usuário não encontrado no Firestore.");
+        try {
+          const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            console.log("Dados do Firestore:", userData);
+
+            name = userData.name || name;
+            phone = userData.phone || "";
+            cpf = userData.cpf || "";
+            birthDate = userData.birthDate || "";
+          } else {
+            console.log("Documento do usuário não encontrado no Firestore.");
+          }
+
+          if (!firebaseUser.displayName && name !== "Usuário") {
+            await updateProfile(firebaseUser, { displayName: name });
+          }
+        } catch (error) {
+          console.error("Erro ao buscar dados no Firestore:", error);
         }
 
         setUser({
@@ -53,11 +61,11 @@ export function useAuth() {
         console.log("Nenhum usuário logado");
         setUser(null);
       }
-      setLoading(false); // Atualiza o estado de carregamento
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  return { user, loading }; // Retorna o estado de carregamento
+  return { user, loading };
 }

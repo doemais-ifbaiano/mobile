@@ -35,7 +35,6 @@ export default function LandingPageScreen() {
       <Layout style={styles.buttonContainer}>
         <ButtonGlobal
           title="Clique e seja um doador"
-          appeareances="default"
           onPress={() => navigation.navigate("Login")}
         />
       </Layout>

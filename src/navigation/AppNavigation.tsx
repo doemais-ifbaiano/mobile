@@ -9,7 +9,7 @@ import RecoverPasswordScreen from "../screens/recoverPassword";
 import NewPasswordScreen from "../screens/newPassword";
 import HomePageScreen from "../screens/HomePage";
 import ProfileScreen from "../screens/ProfilePage";
-import InstitutionPageScreen from "../screens/InstitutionPage";
+import InstitutionPage1Screen from "../screens/InstitutionPage1";
 import FinancialDonationScreen from "../screens/FinancialDonation";
 import MaterialDonationScreen from "../screens/MaterialDonation"
 import { checkUserSession } from "../services/authService";
@@ -38,7 +38,7 @@ export default function AppNavigation() {
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
                 <Stack.Screen name="HomePage" component={HomePageScreen} /> 
                 <Stack.Screen name="Profile" component={ProfileScreen} />
-                <Stack.Screen name="InstitutionPage" component={InstitutionPageScreen} />
+                <Stack.Screen name="InstitutionPage1" component={InstitutionPage1Screen} />
                 <Stack.Screen name="FinancialDonation" component={FinancialDonationScreen} />
                 <Stack.Screen name="MaterialDonation" component={MaterialDonationScreen} />
 
