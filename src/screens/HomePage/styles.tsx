@@ -91,10 +91,17 @@ const styles = StyleSheet.create({
   },
   cardButton:{
     width: "100%",
-    height: "18%",
+    height: "22%",
     borderRadius: 30,
     alignSelf: "center",
-  }
+  },
+  noResults: {
+    fontSize: 14,
+    color: "#999",
+    textAlign: "center",
+    marginVertical: 20,
+    marginHorizontal: 20,
+  },
 });
 
 export default styles;

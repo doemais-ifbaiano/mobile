@@ -14,6 +14,7 @@ export default function HomePageScreen() {
   const theme = useTheme();
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Filtrar");
+  const [searchText, setSearchText] = useState("");
 
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
@@ -26,17 +27,26 @@ export default function HomePageScreen() {
   const fundacaoArtesImg = require("../../../assets/logos/fundacaoCantosDasArtes.png");
   
   const institutions = [
-    { id: 1, image: apaeImg, name: "APAE - Associação de Pais e Amigos dos Excepcionais", page: "InstitutionPage" },
+    { id: 1, image: apaeImg, name: "APAE - Associação de Pais e Amigos dos Excepcionais", page: "InstitutionPage1" },
     { id: 2, image: sosAnimaisImg, name: "SOS Animais de Rua", page: "" },
     { id: 3, image: fundacaoArtesImg, name: "Fundação Cantos das Artes", page: "" },
   ];
 
+  // Filtro com base no texto de busca
+  const filteredInstitutions = institutions.filter((institution) =>
+    institution.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <Layout style={styles.container}>
       <HeaderMenu />
+
+      {/* Campo de busca */}
       <Input 
         style={styles.input}
         placeholder="Pesquisar instituição"
+        value={searchText}
+        onChangeText={setSearchText}
         accessoryLeft={(props) => (
           <Icon 
             {...props} 
@@ -79,30 +89,34 @@ export default function HomePageScreen() {
         </Layout>
       </Popover>
 
-      {/* Cards de Instituições */}
+      {/* Cards de Instituições com filtro */}
       <Layout style={styles.cardsContainer}>
-        {institutions.map((institution) => (
-          <Layout key={institution.id} style={styles.card}>
-            <Image 
-              source={institution.image} 
-              style={styles.cardImage} 
-              resizeMode="cover"
-            />
-            <Text style={styles.cardDescription}>
-              {institution.name}
-            </Text>
-            <Button 
-              style={styles.cardButton}
-              onPress={() => {
-                if (institution.page) {
-                  navigation.navigate(institution.page as any);
-                }
-              }}
-            >
-              Veja Mais
-            </Button>
-          </Layout>
-        ))}
+        {filteredInstitutions.length > 0 ? (
+          filteredInstitutions.map((institution) => (
+            <Layout key={institution.id} style={styles.card}>
+              <Image 
+                source={institution.image} 
+                style={styles.cardImage} 
+                resizeMode="cover"
+              />
+              <Text style={styles.cardDescription}>
+                {institution.name}
+              </Text>
+              <Button 
+                style={styles.cardButton}
+                onPress={() => {
+                  if (institution.page) {
+                    navigation.navigate(institution.page as any);
+                  }
+                }}
+              >
+                Veja Mais
+              </Button>
+            </Layout>
+          ))
+        ) : (
+          <Text style={styles.noResults}>Nenhuma instituição encontrada.</Text>
+        )}
       </Layout>
     </Layout>
   );

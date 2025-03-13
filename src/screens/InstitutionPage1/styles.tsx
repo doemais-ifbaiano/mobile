@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F8F8F8",
+    backgroundColor: "#FFFFFF",
   },
   scrollContainer: {
     paddingHorizontal: 16,
@@ -33,14 +33,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   contentSection: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
     padding: 16,
     marginVertical: 10,
-    elevation: 2,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
+
   },
   text: {
     fontSize: 16,
@@ -55,18 +50,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   imageGallery: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 15,
+    marginVertical: 15, 
   },
   image: {
-    width: "30%",
-    height: 100,
+    width: 130, 
+    height: 200,
     borderRadius: 10,
+    marginRight: 10, 
+    resizeMode: "cover", 
   },
   donationSection: {
-    backgroundColor: "#EFEFEF",
-    borderRadius: 10,
     padding: 16,
     marginVertical: 10,
     alignItems: "center",
@@ -75,18 +68,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     width: "100%",
-    marginTop: 10,
+    marginTop: 20,
+  },
+  separator: {
+    height: 2,
+    backgroundColor: "#EFEFEF", 
+    marginVertical: 20, 
+    width: "100%",
   },
   
   donationButton: {
-    backgroundColor: "#D32F2F", // Vermelho
+    backgroundColor: "#D32F2F",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 25.66,
     alignItems: "center",
     justifyContent: "center",
     marginHorizontal: 5,
-    minWidth: 140, // Tamanho mínimo
+    minWidth: 140, 
   },
   
   buttonText: {

@@ -129,7 +129,7 @@ export default function NewPasswordScreen() {
           </Layout>
 
           <Layout style={styles.buttonContainer}>
-            <ButtonGlobal title="Salvar" appeareances="" onPress={handleSave} />
+            <ButtonGlobal title="Salvar" onPress={handleSave} />
           </Layout>
         </Layout>
       </ScrollView>

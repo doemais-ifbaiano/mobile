@@ -207,7 +207,7 @@ export default function RegisterScreen() {
                   keyboardType="phone-pad"
                 />
               </Layout>
-              <ButtonGlobal title="Próximo" appeareances="" onPress={handleNext} />
+              <ButtonGlobal title="Próximo" onPress={handleNext} />
             </Layout>
           </Layout>
         </ScrollView>

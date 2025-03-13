@@ -88,7 +88,7 @@ export default function RecoverPasswordScreen() {
             </Layout>
 
             <Layout style={styles.buttonContainer}>
-              <ButtonGlobal title="Enviar link de recuperação" appeareances="" onPress={handleRecovery} />
+              <ButtonGlobal title="Enviar link de recuperação" onPress={handleRecovery} />
             </Layout>
           </Layout>
         </ScrollView>

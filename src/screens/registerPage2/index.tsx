@@ -216,7 +216,7 @@ export default function RegisterScreen2() {
                 </Layout>
               </Layout>
 
-              <ButtonGlobal title="Cadastrar" appeareances="" onPress={handleRegister} />
+              <ButtonGlobal title="Cadastrar" onPress={handleRegister} />
             </Layout>
           </Layout>
         </ScrollView>
